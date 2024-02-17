@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 public class Contract implements Serializable {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @ManyToOne
     @PrimaryKeyJoinColumn
     private Grantor grantor;
@@ -37,7 +37,7 @@ public class Contract implements Serializable {
     public Contract() {
     }
 
-    public Contract(long id, Grantor grantor, Project project, Course course, Employee employee, LocalDate startDate,
+    public Contract(Long id, Grantor grantor, Project project, Course course, Employee employee, LocalDate startDate,
             LocalDate endDate) {
         this.id = id;
         this.grantor = grantor;

@@ -11,14 +11,14 @@ import jakarta.persistence.Table;
 @Table(name = "contract_event_notes")
 public class ContractEventNote implements Serializable {
     @Id
-    private long id;
+    private Long id;
     @Column(nullable = false)
     private String note;
 
     public ContractEventNote() {
     }
 
-    public ContractEventNote(long id, String note) {
+    public ContractEventNote(Long id, String note) {
         this.id = id;
         this.note = note;
     }

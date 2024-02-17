@@ -13,14 +13,14 @@ import jakarta.persistence.Table;
 public class Course implements Serializable {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(nullable = false)
     private String name;
 
     public Course() {
     }
 
-    public Course(long id, String name) {
+    public Course(Long id, String name) {
         this.id = id;
         this.name = name;
     }

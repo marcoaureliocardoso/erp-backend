@@ -2,7 +2,6 @@ package br.ufes.sead.erp.financial.entities;
 
 import java.io.Serializable;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -13,14 +12,13 @@ import jakarta.persistence.Table;
 public class Grantor implements Serializable {
     @Id
     @GeneratedValue
-    private long id;
-    @Column(nullable = false)
+    private Long id;
     private String name;
 
     public Grantor() {
     }
 
-    public Grantor(long id, String name) {
+    public Grantor(Long id, String name) {
         this.id = id;
         this.name = name;
     }

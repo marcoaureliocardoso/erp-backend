@@ -1,6 +1,7 @@
 package br.ufes.sead.erp.financial.entities;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 import br.ufes.sead.erp.financial.entities.enums.EventType;
 import jakarta.persistence.CascadeType;
@@ -20,13 +21,14 @@ import jakarta.persistence.Table;
 public class ContractEvent implements Serializable {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @ManyToOne
     @PrimaryKeyJoinColumn
     private Contract contract;
     @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private EventType eventType;
+    private LocalDate eventDate;
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private ContractEventNote note;
@@ -34,10 +36,11 @@ public class ContractEvent implements Serializable {
     public ContractEvent() {
     }
 
-    public ContractEvent(long id, Contract contract, EventType eventType, ContractEventNote note) {
+    public ContractEvent(Long id, Contract contract, EventType eventType, LocalDate eventDate, ContractEventNote note) {
         this.id = id;
         this.contract = contract;
         this.eventType = eventType;
+        this.eventDate = eventDate;
         this.note = note;
     }
 
@@ -63,6 +66,14 @@ public class ContractEvent implements Serializable {
 
     public void setEventType(EventType eventType) {
         this.eventType = eventType;
+    }
+
+    public LocalDate getEventDate() {
+        return eventDate;
+    }
+
+    public void setEventDate(LocalDate eventDate) {
+        this.eventDate = eventDate;
     }
 
     public ContractEventNote getNote() {
@@ -97,8 +108,8 @@ public class ContractEvent implements Serializable {
 
     @Override
     public String toString() {
-        return "ContractEvent [id=" + id + ", contract=" + contract + ", eventType=" + eventType + ", note=" + note
-                + "]";
+        return "ContractEvent [id=" + id + ", contract=" + contract + ", eventType=" + eventType + ", eventDate="
+                + eventDate + ", note=" + note + "]";
     }
 
 }

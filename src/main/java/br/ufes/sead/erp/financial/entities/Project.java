@@ -16,7 +16,7 @@ import jakarta.persistence.Table;
 public class Project implements Serializable {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(nullable = false)
     private String name;
     private String code;
@@ -29,7 +29,7 @@ public class Project implements Serializable {
     public Project() {
     }
 
-    public Project(long id, String name, String code, Grantor grantor, LocalDate startDate, LocalDate endDate) {
+    public Project(Long id, String name, String code, Grantor grantor, LocalDate startDate, LocalDate endDate) {
         this.id = id;
         this.name = name;
         this.code = code;

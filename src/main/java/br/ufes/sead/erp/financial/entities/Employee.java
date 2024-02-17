@@ -14,7 +14,7 @@ import jakarta.persistence.Table;
 public class Employee implements Serializable {
     @Id
     @GeneratedValue
-    private long id;
+    private Long id;
     @Column(nullable = false)
     private String givenName;
     @Column(nullable = false)
@@ -27,7 +27,7 @@ public class Employee implements Serializable {
     public Employee() {
     }
 
-    public Employee(long id, String givenName, String surname, String identityNumber, LocalDate birthDate,
+    public Employee(Long id, String givenName, String surname, String identityNumber, LocalDate birthDate,
             String email) {
         this.id = id;
         this.givenName = givenName;
