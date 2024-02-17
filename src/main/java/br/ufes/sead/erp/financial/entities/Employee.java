@@ -1,12 +1,25 @@
 package br.ufes.sead.erp.financial.entities;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 
-public class Employee {
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 
+@Entity
+@Table(name = "employees")
+public class Employee implements Serializable {
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(nullable = false)
     private String givenName;
+    @Column(nullable = false)
     private String surname;
+    @Column(nullable = false)
     private String identityNumber;
     private LocalDate birthDate;
     private String email;

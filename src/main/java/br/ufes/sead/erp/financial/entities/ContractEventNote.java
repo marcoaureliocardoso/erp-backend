@@ -1,7 +1,18 @@
 package br.ufes.sead.erp.financial.entities;
 
-public class ContractEventNote {
+import java.io.Serializable;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "contract_event_notes")
+public class ContractEventNote implements Serializable {
+    @Id
     private long id;
+    @Column(nullable = false)
     private String note;
 
     public ContractEventNote() {

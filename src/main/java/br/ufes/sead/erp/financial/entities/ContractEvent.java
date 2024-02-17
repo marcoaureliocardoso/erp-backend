@@ -1,11 +1,34 @@
 package br.ufes.sead.erp.financial.entities;
 
-import br.ufes.sead.erp.financial.entities.enums.EventType;
+import java.io.Serializable;
 
-public class ContractEvent {
+import br.ufes.sead.erp.financial.entities.enums.EventType;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.PrimaryKeyJoinColumn;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "contract_events")
+public class ContractEvent implements Serializable {
+    @Id
+    @GeneratedValue
     private long id;
+    @ManyToOne
+    @PrimaryKeyJoinColumn
     private Contract contract;
+    @Column(nullable = false, length = 20)
+    @Enumerated(EnumType.STRING)
     private EventType eventType;
+    @OneToOne(cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn
     private ContractEventNote note;
 
     public ContractEvent() {

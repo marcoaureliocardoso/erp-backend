@@ -1,7 +1,20 @@
 package br.ufes.sead.erp.financial.entities;
 
-public class Grantor {
+import java.io.Serializable;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "grantors")
+public class Grantor implements Serializable {
+    @Id
+    @GeneratedValue
     private long id;
+    @Column(nullable = false)
     private String name;
 
     public Grantor() {
