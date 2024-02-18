@@ -1,19 +1,24 @@
 package br.ufes.sead.erp.financial.entities;
 
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "grantors")
-public class Grantor implements Serializable {
+public class Grantor {
     @Id
     @GeneratedValue
     private Long id;
     private String name;
+
+    @OneToMany(mappedBy = "grantor")
+    private List<Project> projects = new ArrayList<>();
 
     public Grantor() {
     }

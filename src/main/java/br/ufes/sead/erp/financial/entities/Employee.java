@@ -1,17 +1,19 @@
 package br.ufes.sead.erp.financial.entities;
 
-import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "employees")
-public class Employee implements Serializable {
+public class Employee {
     @Id
     @GeneratedValue
     private Long id;
@@ -23,6 +25,9 @@ public class Employee implements Serializable {
     private String identityNumber;
     private LocalDate birthDate;
     private String email;
+
+    @OneToMany(mappedBy = "employee")
+    private List<Contract> contracts = new ArrayList<>();
 
     public Employee() {
     }

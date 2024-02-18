@@ -1,30 +1,36 @@
 package br.ufes.sead.erp.financial.entities;
 
-import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "projects")
-public class Project implements Serializable {
+public class Project {
     @Id
     @GeneratedValue
     private Long id;
     @Column(nullable = false)
     private String name;
     private String code;
+    private LocalDate startDate;
+    private LocalDate endDate;
+
+    @OneToMany(mappedBy = "project")
+    private List<Contract> contracts = new ArrayList<>();
+
     @ManyToOne
     @PrimaryKeyJoinColumn
     private Grantor grantor;
-    private LocalDate startDate;
-    private LocalDate endDate;
 
     public Project() {
     }

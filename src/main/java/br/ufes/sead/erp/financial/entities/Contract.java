@@ -1,25 +1,35 @@
 package br.ufes.sead.erp.financial.entities;
 
-import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "contracts")
-public class Contract implements Serializable {
+public class Contract {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
-    @PrimaryKeyJoinColumn
-    private Grantor grantor;
+    @Column(nullable = false)
+    private LocalDate startDate;
+    @Column(nullable = false)
+    private LocalDate endDate;
+
+    @OneToMany(mappedBy = "contract")
+    private List<ContractEvent> events = new ArrayList<>();
+
+    // @ManyToOne
+    // @PrimaryKeyJoinColumn
+    // private Grantor grantor;
     @ManyToOne
     @PrimaryKeyJoinColumn
     private Project project;
@@ -29,23 +39,29 @@ public class Contract implements Serializable {
     @ManyToOne
     @PrimaryKeyJoinColumn
     private Employee employee;
-    @Column(nullable = false)
-    private LocalDate startDate;
-    @Column(nullable = false)
-    private LocalDate endDate;
 
     public Contract() {
     }
 
-    public Contract(Long id, Grantor grantor, Project project, Course course, Employee employee, LocalDate startDate,
+    public Contract(Long id, Project project, Course course, Employee employee, LocalDate startDate,
             LocalDate endDate) {
         this.id = id;
-        this.grantor = grantor;
+        // this.grantor = grantor;
         this.project = project;
         this.course = course;
         this.employee = employee;
         this.startDate = startDate;
         this.endDate = endDate;
+    }
+
+    public Contract(Long id, Project project, Course course, Employee employee, LocalDate startDate) {
+        this.id = id;
+        // this.grantor = grantor;
+        this.project = project;
+        this.course = course;
+        this.employee = employee;
+        this.startDate = startDate;
+        this.endDate = startDate.plusYears(1);
     }
 
     public long getId() {
@@ -56,13 +72,13 @@ public class Contract implements Serializable {
         this.id = id;
     }
 
-    public Grantor getGrantor() {
-        return grantor;
-    }
+    // public Grantor getGrantor() {
+    // return grantor;
+    // }
 
-    public void setGrantor(Grantor grantor) {
-        this.grantor = grantor;
-    }
+    // public void setGrantor(Grantor grantor) {
+    // this.grantor = grantor;
+    // }
 
     public Project getProject() {
         return project;
@@ -112,6 +128,14 @@ public class Contract implements Serializable {
         return startDate.plusMonths(12);
     }
 
+    public LocalDate getFirstReportLimitDate() {
+        return startDate.plusMonths(6);
+    }
+
+    public LocalDate getSecondReportLimitDate() {
+        return startDate.plusMonths(12);
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -136,10 +160,11 @@ public class Contract implements Serializable {
 
     @Override
     public String toString() {
-        return "Contract [id=" + id + ", grantor=" + grantor + ", project=" + project + ", course=" + course
-                + ", employee=" + employee + ", startDate=" + startDate + ", endDate=" + endDate
-                + ", firstRecessInformDate=" + getFirstRecessInformLimitDate() + ", secondRecessInformDate="
-                + getSecondRecessInformLimitDate() + "]";
+        return "Contract [id=" + id + ", project=" + project + ", course=" + course + ", employee=" + employee
+                + ", startDate=" + startDate + ", endDate=" + endDate + ", firstRecessInformDate="
+                + getFirstRecessInformLimitDate() + ", secondRecessInformDate=" + getSecondRecessInformLimitDate()
+                + ", firstReportLimitDate=" + getFirstReportLimitDate() + ", secondReportLimitDate="
+                + getSecondReportLimitDate() + "]";
     }
 
 }

@@ -1,6 +1,5 @@
 package br.ufes.sead.erp.financial.entities;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 import br.ufes.sead.erp.financial.entities.enums.EventType;
@@ -18,20 +17,22 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "contract_events")
-public class ContractEvent implements Serializable {
+public class ContractEvent {
     @Id
     @GeneratedValue
     private Long id;
-    @ManyToOne
-    @PrimaryKeyJoinColumn
-    private Contract contract;
     @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private EventType eventType;
     private LocalDate eventDate;
+
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private ContractEventNote note;
+
+    @ManyToOne
+    @PrimaryKeyJoinColumn
+    private Contract contract;
 
     public ContractEvent() {
     }

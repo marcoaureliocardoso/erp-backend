@@ -155,36 +155,21 @@ public class TestConfig implements CommandLineRunner {
                 employeeRepository.saveAll(
                                 Arrays.asList(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15));
 
-                Contract ct1 = new Contract(null, g1, p1, c1, e1, LocalDate.parse("2019-02-01"),
-                                LocalDate.parse("2020-02-01"));
-                Contract ct2 = new Contract(null, g2, p2, c2, e2, LocalDate.parse("2018-05-01"),
-                                LocalDate.parse("2019-05-01"));
-                Contract ct3 = new Contract(null, g3, p3, c3, e3, LocalDate.parse("2021-07-01"),
-                                LocalDate.parse("2022-07-01"));
-                Contract ct4 = new Contract(null, g4, p4, c4, e4, LocalDate.parse("2017-03-01"),
-                                LocalDate.parse("2018-03-01"));
-                Contract ct5 = new Contract(null, g5, p5, c5, e5, LocalDate.parse("2022-10-01"),
-                                LocalDate.parse("2023-10-01"));
-                Contract ct6 = new Contract(null, g6, p6, c6, e6, LocalDate.parse("2020-12-01"),
-                                LocalDate.parse("2021-12-01"));
-                Contract ct7 = new Contract(null, g7, p7, c7, e7, LocalDate.parse("2019-11-01"),
-                                LocalDate.parse("2020-11-01"));
-                Contract ct8 = new Contract(null, g8, p8, c8, e8, LocalDate.parse("2021-04-01"),
-                                LocalDate.parse("2022-04-01"));
-                Contract ct9 = new Contract(null, g9, p9, c9, e9, LocalDate.parse("2019-07-01"),
-                                LocalDate.parse("2020-07-01"));
-                Contract ct10 = new Contract(null, g10, p10, c10, e10, LocalDate.parse("2022-01-01"),
-                                LocalDate.parse("2023-01-01"));
-                Contract ct11 = new Contract(null, g11, p11, c11, e11, LocalDate.parse("2020-09-01"),
-                                LocalDate.parse("2021-09-01"));
-                Contract ct12 = new Contract(null, g12, p12, c12, e12, LocalDate.parse("2018-06-01"),
-                                LocalDate.parse("2019-06-01"));
-                Contract ct13 = new Contract(null, g13, p13, c13, e13, LocalDate.parse("2021-05-01"),
-                                LocalDate.parse("2022-05-01"));
-                Contract ct14 = new Contract(null, g14, p14, c14, e14, LocalDate.parse("2019-08-01"),
-                                LocalDate.parse("2020-08-01"));
-                Contract ct15 = new Contract(null, g15, p15, c15, e15, LocalDate.parse("2022-03-01"),
-                                LocalDate.parse("2023-03-01"));
+                Contract ct1 = new Contract(null, p1, c1, e1, LocalDate.parse("2019-02-01"));
+                Contract ct2 = new Contract(null, p2, c2, e2, LocalDate.parse("2018-05-01"));
+                Contract ct3 = new Contract(null, p3, c3, e3, LocalDate.parse("2021-07-01"));
+                Contract ct4 = new Contract(null, p4, c4, e4, LocalDate.parse("2017-03-01"));
+                Contract ct5 = new Contract(null, p5, c5, e5, LocalDate.parse("2022-10-01"));
+                Contract ct6 = new Contract(null, p6, c6, e6, LocalDate.parse("2020-12-01"));
+                Contract ct7 = new Contract(null, p7, c7, e7, LocalDate.parse("2019-11-01"));
+                Contract ct8 = new Contract(null, p8, c8, e8, LocalDate.parse("2021-04-01"));
+                Contract ct9 = new Contract(null, p9, c9, e9, LocalDate.parse("2019-07-01"));
+                Contract ct10 = new Contract(null, p10, c10, e10, LocalDate.parse("2022-01-01"));
+                Contract ct11 = new Contract(null, p11, c11, e11, LocalDate.parse("2020-09-01"));
+                Contract ct12 = new Contract(null, p12, c12, e12, LocalDate.parse("2018-06-01"));
+                Contract ct13 = new Contract(null, p13, c13, e13, LocalDate.parse("2021-05-01"));
+                Contract ct14 = new Contract(null, p14, c14, e14, LocalDate.parse("2019-08-01"));
+                Contract ct15 = new Contract(null, p15, c15, e15, LocalDate.parse("2022-03-01"));
 
                 contractRepository.saveAll(Arrays.asList(ct1, ct2, ct3, ct4, ct5, ct6, ct7, ct8, ct9, ct10, ct11, ct12,
                                 ct13, ct14, ct15));
