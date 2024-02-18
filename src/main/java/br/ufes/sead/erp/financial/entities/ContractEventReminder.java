@@ -2,6 +2,8 @@ package br.ufes.sead.erp.financial.entities;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import br.ufes.sead.erp.financial.entities.enums.EventType;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -16,32 +18,33 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "contract_events")
-public class ContractEvent {
+@Table(name = "contract_event_reminders")
+public class ContractEventReminder {
     @Id
     @GeneratedValue
     private Long id;
     @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private EventType eventType;
-    private LocalDate eventDate;
+    private LocalDate eventReminderDate;
 
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
-    private ContractEventNote note;
+    private ContractEventReminderNote note;
 
     @ManyToOne
     @PrimaryKeyJoinColumn
+    @JsonIgnoreProperties({"eventReminders", "project", "course", "employee"})
     private Contract contract;
 
-    public ContractEvent() {
+    public ContractEventReminder() {
     }
 
-    public ContractEvent(Long id, Contract contract, EventType eventType, LocalDate eventDate, ContractEventNote note) {
+    public ContractEventReminder(Long id, Contract contract, EventType eventType, LocalDate eventReminderDate, ContractEventReminderNote note) {
         this.id = id;
         this.contract = contract;
         this.eventType = eventType;
-        this.eventDate = eventDate;
+        this.eventReminderDate = eventReminderDate;
         this.note = note;
     }
 
@@ -69,19 +72,19 @@ public class ContractEvent {
         this.eventType = eventType;
     }
 
-    public LocalDate getEventDate() {
-        return eventDate;
+    public LocalDate getEventReminderDate() {
+        return eventReminderDate;
     }
 
-    public void setEventDate(LocalDate eventDate) {
-        this.eventDate = eventDate;
+    public void setEventReminderDate(LocalDate eventReminderDate) {
+        this.eventReminderDate = eventReminderDate;
     }
 
-    public ContractEventNote getNote() {
+    public ContractEventReminderNote getNote() {
         return note;
     }
 
-    public void setNote(ContractEventNote note) {
+    public void setNote(ContractEventReminderNote note) {
         this.note = note;
     }
 
@@ -101,7 +104,7 @@ public class ContractEvent {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ContractEvent other = (ContractEvent) obj;
+        ContractEventReminder other = (ContractEventReminder) obj;
         if (id != other.id)
             return false;
         return true;
@@ -109,8 +112,8 @@ public class ContractEvent {
 
     @Override
     public String toString() {
-        return "ContractEvent [id=" + id + ", contract=" + contract + ", eventType=" + eventType + ", eventDate="
-                + eventDate + ", note=" + note + "]";
+        return "ContractEventReminder [id=" + id + ", eventType=" + eventType + ", eventReminderDate=" + eventReminderDate + ", note=" + note
+                + ", contract=" + contract + "]";
     }
 
 }

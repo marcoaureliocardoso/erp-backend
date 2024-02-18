@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,10 +28,12 @@ public class Project {
     private LocalDate endDate;
 
     @OneToMany(mappedBy = "project")
+    @JsonIgnoreProperties({"project", "eventReminders"})
     private List<Contract> contracts = new ArrayList<>();
 
     @ManyToOne
     @PrimaryKeyJoinColumn
+    @JsonIgnoreProperties("projects")
     private Grantor grantor;
 
     public Project() {
@@ -92,6 +96,10 @@ public class Project {
         this.endDate = endDate;
     }
 
+    public List<Contract> getContracts() {
+        return contracts;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -116,8 +124,8 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project [id=" + id + ", name=" + name + ", code=" + code + ", grantor=" + grantor + ", startDate="
-                + startDate + ", endDate=" + endDate + "]";
+        return "Project [id=" + id + ", name=" + name + ", code=" + code + ", startDate=" + startDate + ", endDate="
+                + endDate + ", contracts=" + contracts + ", grantor=" + grantor + "]";
     }
 
 }

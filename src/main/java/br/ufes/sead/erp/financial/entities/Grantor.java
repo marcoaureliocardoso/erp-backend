@@ -3,6 +3,8 @@ package br.ufes.sead.erp.financial.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
@@ -18,6 +20,7 @@ public class Grantor {
     private String name;
 
     @OneToMany(mappedBy = "grantor")
+    @JsonIgnoreProperties({"grantor", "contracts"})
     private List<Project> projects = new ArrayList<>();
 
     public Grantor() {
@@ -44,6 +47,10 @@ public class Grantor {
         this.name = name;
     }
 
+    public List<Project> getProjects() {
+        return projects;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -68,7 +75,7 @@ public class Grantor {
 
     @Override
     public String toString() {
-        return "Grantor [id=" + id + ", name=" + name + "]";
+        return "Grantor [id=" + id + ", name=" + name + ", projects=" + projects + "]";
     }
 
 }

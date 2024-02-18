@@ -9,14 +9,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
 import br.ufes.sead.erp.financial.entities.Contract;
-import br.ufes.sead.erp.financial.entities.ContractEvent;
-import br.ufes.sead.erp.financial.entities.ContractEventNote;
+import br.ufes.sead.erp.financial.entities.ContractEventReminder;
+import br.ufes.sead.erp.financial.entities.ContractEventReminderNote;
 import br.ufes.sead.erp.financial.entities.Course;
 import br.ufes.sead.erp.financial.entities.Employee;
 import br.ufes.sead.erp.financial.entities.Grantor;
 import br.ufes.sead.erp.financial.entities.Project;
 import br.ufes.sead.erp.financial.entities.enums.EventType;
-import br.ufes.sead.erp.financial.repositories.ContractEventRepository;
+import br.ufes.sead.erp.financial.repositories.ContractEventReminderRepository;
 import br.ufes.sead.erp.financial.repositories.ContractRepository;
 import br.ufes.sead.erp.financial.repositories.CourseRepository;
 import br.ufes.sead.erp.financial.repositories.EmployeeRepository;
@@ -38,7 +38,7 @@ public class TestConfig implements CommandLineRunner {
         @Autowired
         private ContractRepository contractRepository;
         @Autowired
-        private ContractEventRepository contractEventRepository;
+        private ContractEventReminderRepository contractEventRepository;
 
         @Override
         public void run(String... args) throws Exception {
@@ -174,95 +174,95 @@ public class TestConfig implements CommandLineRunner {
                 contractRepository.saveAll(Arrays.asList(ct1, ct2, ct3, ct4, ct5, ct6, ct7, ct8, ct9, ct10, ct11, ct12,
                                 ct13, ct14, ct15));
 
-                ContractEvent ce1 = new ContractEvent(null, ct1, EventType.RECESS1, LocalDate.parse("2022-11-23"),
+                ContractEventReminder ce1 = new ContractEventReminder(null, ct1, EventType.RECESS1, LocalDate.parse("2022-11-23"),
                                 null); // id: 2
-                ContractEvent ce2 = new ContractEvent(null, ct1, EventType.REPORT1_DELIVERY,
+                ContractEventReminder ce2 = new ContractEventReminder(null, ct1, EventType.REPORT1_DELIVERY,
                                 LocalDate.parse("2022-11-24"),
                                 null); // id: 5
-                ContractEvent ce3 = new ContractEvent(null, ct1, EventType.RECESS2, LocalDate.parse("2023-05-24"),
+                ContractEventReminder ce3 = new ContractEventReminder(null, ct1, EventType.RECESS2, LocalDate.parse("2023-05-24"),
                                 null); // id: 7
-                ContractEvent ce4 = new ContractEvent(null, ct1, EventType.REPORT2_DELIVERY,
+                ContractEventReminder ce4 = new ContractEventReminder(null, ct1, EventType.REPORT2_DELIVERY,
                                 LocalDate.parse("2023-05-25"),
                                 null); // id: 10
-                ContractEvent ce5 = new ContractEvent(null, ct1, EventType.CONTRACT_END, LocalDate.parse("2023-07-09"),
+                ContractEventReminder ce5 = new ContractEventReminder(null, ct1, EventType.CONTRACT_END, LocalDate.parse("2023-07-09"),
                                 null); // id: 12
-                ContractEvent ce6 = new ContractEvent(null, ct2, EventType.RECESS1, LocalDate.parse("2025-03-07"),
+                ContractEventReminder ce6 = new ContractEventReminder(null, ct2, EventType.RECESS1, LocalDate.parse("2025-03-07"),
                                 null); // id: 15
-                ContractEvent ce7 = new ContractEvent(null, ct2, EventType.REPORT1_DELIVERY,
+                ContractEventReminder ce7 = new ContractEventReminder(null, ct2, EventType.REPORT1_DELIVERY,
                                 LocalDate.parse("2025-03-08"),
                                 null); // id: 18
-                ContractEvent ce8 = new ContractEvent(null, ct2, EventType.RECESS2, LocalDate.parse("2025-09-07"),
+                ContractEventReminder ce8 = new ContractEventReminder(null, ct2, EventType.RECESS2, LocalDate.parse("2025-09-07"),
                                 null); // id: 20
-                ContractEvent ce9 = new ContractEvent(null, ct2, EventType.REPORT2_DELIVERY,
+                ContractEventReminder ce9 = new ContractEventReminder(null, ct2, EventType.REPORT2_DELIVERY,
                                 LocalDate.parse("2025-09-08"),
                                 null); // id: 23
-                ContractEvent ce10 = new ContractEvent(null, ct2, EventType.CONTRACT_END, LocalDate.parse("2025-10-23"),
+                ContractEventReminder ce10 = new ContractEventReminder(null, ct2, EventType.CONTRACT_END, LocalDate.parse("2025-10-23"),
                                 null); // id: 25
-                ContractEvent ce11 = new ContractEvent(null, ct3, EventType.RECESS1, LocalDate.parse("2020-10-01"),
+                ContractEventReminder ce11 = new ContractEventReminder(null, ct3, EventType.RECESS1, LocalDate.parse("2020-10-01"),
                                 null); // id: 28
-                ContractEvent ce12 = new ContractEvent(null, ct3, EventType.REPORT1_DELIVERY,
+                ContractEventReminder ce12 = new ContractEventReminder(null, ct3, EventType.REPORT1_DELIVERY,
                                 LocalDate.parse("2020-10-02"),
                                 null); // id: 31
-                ContractEvent ce13 = new ContractEvent(null, ct3, EventType.RECESS2, LocalDate.parse("2021-04-01"),
+                ContractEventReminder ce13 = new ContractEventReminder(null, ct3, EventType.RECESS2, LocalDate.parse("2021-04-01"),
                                 null); // id: 33
-                ContractEvent ce14 = new ContractEvent(null, ct3, EventType.REPORT2_DELIVERY,
+                ContractEventReminder ce14 = new ContractEventReminder(null, ct3, EventType.REPORT2_DELIVERY,
                                 LocalDate.parse("2021-04-02"),
                                 null); // id: 36
-                ContractEvent ce15 = new ContractEvent(null, ct3, EventType.CONTRACT_END, LocalDate.parse("2021-05-17"),
+                ContractEventReminder ce15 = new ContractEventReminder(null, ct3, EventType.CONTRACT_END, LocalDate.parse("2021-05-17"),
                                 null); // id: 38
-                ContractEvent ce16 = new ContractEvent(null, ct4, EventType.RECESS1, LocalDate.parse("2024-12-10"),
+                ContractEventReminder ce16 = new ContractEventReminder(null, ct4, EventType.RECESS1, LocalDate.parse("2024-12-10"),
                                 null); // id: 41
-                ContractEvent ce17 = new ContractEvent(null, ct4, EventType.REPORT1_DELIVERY,
+                ContractEventReminder ce17 = new ContractEventReminder(null, ct4, EventType.REPORT1_DELIVERY,
                                 LocalDate.parse("2024-12-11"),
                                 null); // id: 44
-                ContractEvent ce18 = new ContractEvent(null, ct4, EventType.RECESS2, LocalDate.parse("2025-06-10"),
+                ContractEventReminder ce18 = new ContractEventReminder(null, ct4, EventType.RECESS2, LocalDate.parse("2025-06-10"),
                                 null); // id: 46
-                ContractEvent ce19 = new ContractEvent(null, ct4, EventType.REPORT2_DELIVERY,
+                ContractEventReminder ce19 = new ContractEventReminder(null, ct4, EventType.REPORT2_DELIVERY,
                                 LocalDate.parse("2025-06-11"),
                                 null); // id: 49
-                ContractEvent ce20 = new ContractEvent(null, ct4, EventType.CONTRACT_END, LocalDate.parse("2025-07-26"),
+                ContractEventReminder ce20 = new ContractEventReminder(null, ct4, EventType.CONTRACT_END, LocalDate.parse("2025-07-26"),
                                 null); // id: 51
-                ContractEvent ce21 = new ContractEvent(null, ct5, EventType.RECESS1, LocalDate.parse("2024-05-13"),
+                ContractEventReminder ce21 = new ContractEventReminder(null, ct5, EventType.RECESS1, LocalDate.parse("2024-05-13"),
                                 null); // id: 54
-                ContractEvent ce22 = new ContractEvent(null, ct5, EventType.REPORT1_DELIVERY,
+                ContractEventReminder ce22 = new ContractEventReminder(null, ct5, EventType.REPORT1_DELIVERY,
                                 LocalDate.parse("2024-05-14"),
                                 null); // id: 57
-                ContractEvent ce23 = new ContractEvent(null, ct5, EventType.RECESS2, LocalDate.parse("2024-11-13"),
+                ContractEventReminder ce23 = new ContractEventReminder(null, ct5, EventType.RECESS2, LocalDate.parse("2024-11-13"),
                                 null); // id: 59
-                ContractEvent ce24 = new ContractEvent(null, ct5, EventType.REPORT2_DELIVERY,
+                ContractEventReminder ce24 = new ContractEventReminder(null, ct5, EventType.REPORT2_DELIVERY,
                                 LocalDate.parse("2024-11-14"),
                                 null); // id: 62
-                ContractEvent ce25 = new ContractEvent(null, ct5, EventType.CONTRACT_END, LocalDate.parse("2024-12-29"),
+                ContractEventReminder ce25 = new ContractEventReminder(null, ct5, EventType.CONTRACT_END, LocalDate.parse("2024-12-29"),
                                 null); // id: 64
 
                 contractEventRepository.saveAll(Arrays.asList(ce1, ce2, ce3, ce4, ce5, ce6, ce7, ce8, ce9, ce10, ce11,
                                 ce12, ce13, ce14, ce15, ce16, ce17, ce18, ce19, ce20, ce21, ce22, ce23, ce24, ce25));
 
-                ContractEventNote ceNote1 = new ContractEventNote(1L, "Some notes 1.");
-                ContractEventNote ceNote2 = new ContractEventNote(2L, "Some notes 2.");
-                ContractEventNote ceNote3 = new ContractEventNote(3L, "Some notes 3.");
-                ContractEventNote ceNote4 = new ContractEventNote(4L, "Some notes 4.");
-                ContractEventNote ceNote5 = new ContractEventNote(5L, "Some notes 5.");
-                ContractEventNote ceNote6 = new ContractEventNote(6L, "Some notes 6.");
-                ContractEventNote ceNote7 = new ContractEventNote(7L, "Some notes 7.");
-                ContractEventNote ceNote8 = new ContractEventNote(8L, "Some notes 8.");
-                ContractEventNote ceNote9 = new ContractEventNote(9L, "Some notes 9.");
-                ContractEventNote ceNote10 = new ContractEventNote(10L, "Some notes 10.");
-                ContractEventNote ceNote11 = new ContractEventNote(11L, "Some notes 11.");
-                ContractEventNote ceNote12 = new ContractEventNote(12L, "Some notes 12.");
-                ContractEventNote ceNote13 = new ContractEventNote(13L, "Some notes 13.");
-                ContractEventNote ceNote14 = new ContractEventNote(14L, "Some notes 14.");
-                ContractEventNote ceNote15 = new ContractEventNote(15L, "Some notes 15.");
-                ContractEventNote ceNote16 = new ContractEventNote(16L, "Some notes 16.");
-                ContractEventNote ceNote17 = new ContractEventNote(17L, "Some notes 17.");
-                ContractEventNote ceNote18 = new ContractEventNote(18L, "Some notes 18.");
-                ContractEventNote ceNote19 = new ContractEventNote(19L, "Some notes 19.");
-                ContractEventNote ceNote20 = new ContractEventNote(20L, "Some notes 20.");
-                ContractEventNote ceNote21 = new ContractEventNote(21L, "Some notes 21.");
-                ContractEventNote ceNote22 = new ContractEventNote(22L, "Some notes 22.");
-                ContractEventNote ceNote23 = new ContractEventNote(23L, "Some notes 23.");
-                ContractEventNote ceNote24 = new ContractEventNote(24L, "Some notes 24.");
-                ContractEventNote ceNote25 = new ContractEventNote(25L, "Some notes 25.");
+                ContractEventReminderNote ceNote1 = new ContractEventReminderNote(1L, "Some notes 1.");
+                ContractEventReminderNote ceNote2 = new ContractEventReminderNote(2L, "Some notes 2.");
+                ContractEventReminderNote ceNote3 = new ContractEventReminderNote(3L, "Some notes 3.");
+                ContractEventReminderNote ceNote4 = new ContractEventReminderNote(4L, "Some notes 4.");
+                ContractEventReminderNote ceNote5 = new ContractEventReminderNote(5L, "Some notes 5.");
+                ContractEventReminderNote ceNote6 = new ContractEventReminderNote(6L, "Some notes 6.");
+                ContractEventReminderNote ceNote7 = new ContractEventReminderNote(7L, "Some notes 7.");
+                ContractEventReminderNote ceNote8 = new ContractEventReminderNote(8L, "Some notes 8.");
+                ContractEventReminderNote ceNote9 = new ContractEventReminderNote(9L, "Some notes 9.");
+                ContractEventReminderNote ceNote10 = new ContractEventReminderNote(10L, "Some notes 10.");
+                ContractEventReminderNote ceNote11 = new ContractEventReminderNote(11L, "Some notes 11.");
+                ContractEventReminderNote ceNote12 = new ContractEventReminderNote(12L, "Some notes 12.");
+                ContractEventReminderNote ceNote13 = new ContractEventReminderNote(13L, "Some notes 13.");
+                ContractEventReminderNote ceNote14 = new ContractEventReminderNote(14L, "Some notes 14.");
+                ContractEventReminderNote ceNote15 = new ContractEventReminderNote(15L, "Some notes 15.");
+                ContractEventReminderNote ceNote16 = new ContractEventReminderNote(16L, "Some notes 16.");
+                ContractEventReminderNote ceNote17 = new ContractEventReminderNote(17L, "Some notes 17.");
+                ContractEventReminderNote ceNote18 = new ContractEventReminderNote(18L, "Some notes 18.");
+                ContractEventReminderNote ceNote19 = new ContractEventReminderNote(19L, "Some notes 19.");
+                ContractEventReminderNote ceNote20 = new ContractEventReminderNote(20L, "Some notes 20.");
+                ContractEventReminderNote ceNote21 = new ContractEventReminderNote(21L, "Some notes 21.");
+                ContractEventReminderNote ceNote22 = new ContractEventReminderNote(22L, "Some notes 22.");
+                ContractEventReminderNote ceNote23 = new ContractEventReminderNote(23L, "Some notes 23.");
+                ContractEventReminderNote ceNote24 = new ContractEventReminderNote(24L, "Some notes 24.");
+                ContractEventReminderNote ceNote25 = new ContractEventReminderNote(25L, "Some notes 25.");
 
                 ce1.setNote(ceNote1);
                 ce2.setNote(ceNote2);

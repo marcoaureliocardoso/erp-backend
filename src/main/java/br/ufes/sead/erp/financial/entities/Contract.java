@@ -4,6 +4,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -25,19 +27,23 @@ public class Contract {
     private LocalDate endDate;
 
     @OneToMany(mappedBy = "contract")
-    private List<ContractEvent> events = new ArrayList<>();
+    @JsonIgnoreProperties("contract")
+    private List<ContractEventReminder> eventReminders = new ArrayList<>();
 
     // @ManyToOne
     // @PrimaryKeyJoinColumn
     // private Grantor grantor;
     @ManyToOne
     @PrimaryKeyJoinColumn
+    @JsonIgnoreProperties("contracts")
     private Project project;
     @ManyToOne
     @PrimaryKeyJoinColumn
+    @JsonIgnoreProperties("contracts")
     private Course course;
     @ManyToOne
     @PrimaryKeyJoinColumn
+    @JsonIgnoreProperties("contracts")
     private Employee employee;
 
     public Contract() {
@@ -136,6 +142,10 @@ public class Contract {
         return startDate.plusMonths(12);
     }
 
+    public List<ContractEventReminder> getEventReminders() {
+        return eventReminders;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -160,11 +170,11 @@ public class Contract {
 
     @Override
     public String toString() {
-        return "Contract [id=" + id + ", project=" + project + ", course=" + course + ", employee=" + employee
-                + ", startDate=" + startDate + ", endDate=" + endDate + ", firstRecessInformDate="
-                + getFirstRecessInformLimitDate() + ", secondRecessInformDate=" + getSecondRecessInformLimitDate()
-                + ", firstReportLimitDate=" + getFirstReportLimitDate() + ", secondReportLimitDate="
-                + getSecondReportLimitDate() + "]";
+        return "Contract [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", eventReminders=" + eventReminders
+                + ", project=" + project + ", course=" + course + ", employee=" + employee
+                + "firstRecessInformLimitDate" + getFirstRecessInformLimitDate() + "secondRecessInformLimitDate"
+                + getSecondRecessInformLimitDate() + "firstReportLimitDate" + getFirstReportLimitDate()
+                + "secondReportLimitDate" + getSecondReportLimitDate() + "]";
     }
 
 }

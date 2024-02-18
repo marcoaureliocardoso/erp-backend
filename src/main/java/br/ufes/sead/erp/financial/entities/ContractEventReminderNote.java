@@ -7,16 +7,16 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "contract_event_notes")
-public class ContractEventNote {
+public class ContractEventReminderNote {
     @Id
     private Long id;
     @Column(nullable = false)
     private String note;
 
-    public ContractEventNote() {
+    public ContractEventReminderNote() {
     }
 
-    public ContractEventNote(Long id, String note) {
+    public ContractEventReminderNote(Long id, String note) {
         this.id = id;
         this.note = note;
     }
@@ -53,7 +53,7 @@ public class ContractEventNote {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ContractEventNote other = (ContractEventNote) obj;
+        ContractEventReminderNote other = (ContractEventReminderNote) obj;
         if (id != other.id)
             return false;
         return true;
@@ -61,7 +61,7 @@ public class ContractEventNote {
 
     @Override
     public String toString() {
-        return "ContractEventNote [id=" + id + ", note=" + note + "]";
+        return "ContractEventReminderNote [id=" + id + ", note=" + note + "]";
     }
 
 }
