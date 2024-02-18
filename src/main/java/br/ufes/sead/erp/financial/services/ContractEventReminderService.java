@@ -1,12 +1,17 @@
 package br.ufes.sead.erp.financial.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.ufes.sead.erp.financial.entities.ContractEventReminder;
 import br.ufes.sead.erp.financial.repositories.ContractEventReminderRepository;
+import br.ufes.sead.erp.financial.services.exceptions.DatabaseException;
+import br.ufes.sead.erp.financial.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 
 @Service
 public class ContractEventReminderService {
@@ -19,7 +24,8 @@ public class ContractEventReminderService {
     }
 
     public ContractEventReminder findById(Long id) {
-        return contractEventRepository.findById(id).orElse(null);
+        Optional<ContractEventReminder> contractEvent = contractEventRepository.findById(id);
+        return contractEvent.orElseThrow(() -> new ResourceNotFoundException(id));
     }
 
     public ContractEventReminder save(ContractEventReminder contractEventReminder) {
@@ -27,10 +33,38 @@ public class ContractEventReminderService {
     }
 
     public void deleteById(Long id) {
-        contractEventRepository.deleteById(id);
+        try {
+            if (!contractEventRepository.existsById(id))
+                throw new ResourceNotFoundException(id);
+
+            contractEventRepository.deleteById(id);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
     }
 
     public void delete(ContractEventReminder contractEventReminder) {
-        contractEventRepository.delete(contractEventReminder);
+        try {
+            if (!contractEventRepository.existsById(contractEventReminder.getId()))
+                throw new ResourceNotFoundException(contractEventReminder.getId());
+
+            contractEventRepository.delete(contractEventReminder);
+        } catch (DataIntegrityViolationException e) {
+            throw new DatabaseException(e.getMessage());
+        }
+    }
+
+    public ContractEventReminder update(Long id, ContractEventReminder contractEventReminder) {
+        try {
+            ContractEventReminder contractEventEntityReference = contractEventRepository
+                    .getReferenceById(id);
+
+            contractEventEntityReference.setEventType(contractEventReminder.getEventType());
+            contractEventEntityReference.setEventReminderDate(contractEventReminder.getEventReminderDate());
+
+            return contractEventRepository.save(contractEventEntityReference);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
     }
 }
