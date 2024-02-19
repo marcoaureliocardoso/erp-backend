@@ -34,7 +34,7 @@ public class ContractEventReminder {
 
     @ManyToOne
     @PrimaryKeyJoinColumn
-    @JsonIgnoreProperties({"eventReminders", "project", "course", "employee"})
+    @JsonIgnoreProperties({"eventReminders", "project", "course"})
     private Contract contract;
 
     public ContractEventReminder() {
