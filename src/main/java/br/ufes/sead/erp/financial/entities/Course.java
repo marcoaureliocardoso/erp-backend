@@ -28,8 +28,7 @@ public class Course {
     public Course() {
     }
 
-    public Course(Long id, String name) {
-        this.id = id;
+    public Course(String name) {
         this.name = name;
     }
 

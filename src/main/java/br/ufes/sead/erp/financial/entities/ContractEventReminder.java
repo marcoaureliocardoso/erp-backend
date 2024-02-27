@@ -23,29 +23,40 @@ public class ContractEventReminder {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)
     private EventType eventType;
+
     private LocalDate eventReminderDate;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    private Boolean sent;
+
+    @OneToOne(mappedBy = "eventReminder", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
     private ContractEventReminderNote note;
 
     @ManyToOne
     @PrimaryKeyJoinColumn
-    @JsonIgnoreProperties({"eventReminders", "project", "course"})
+    @JsonIgnoreProperties({ "eventReminders", "project", "course" })
     private Contract contract;
 
     public ContractEventReminder() {
     }
 
-    public ContractEventReminder(Long id, Contract contract, EventType eventType, LocalDate eventReminderDate, ContractEventReminderNote note) {
-        this.id = id;
+    public ContractEventReminder(Contract contract, EventType eventType, LocalDate eventReminderDate, ContractEventReminderNote note) {
         this.contract = contract;
         this.eventType = eventType;
         this.eventReminderDate = eventReminderDate;
+        this.sent = false;
         this.note = note;
+    }
+
+    public ContractEventReminder(Contract contract, EventType eventType, LocalDate eventReminderDate) {
+        this.contract = contract;
+        this.eventType = eventType;
+        this.eventReminderDate = eventReminderDate;
+        this.sent = false;
     }
 
     public long getId() {
@@ -80,6 +91,14 @@ public class ContractEventReminder {
         this.eventReminderDate = eventReminderDate;
     }
 
+    public Boolean getSent() {
+        return sent;
+    }
+
+    public void setSent(Boolean sent) {
+        this.sent = sent;
+    }
+
     public ContractEventReminderNote getNote() {
         return note;
     }
@@ -112,7 +131,8 @@ public class ContractEventReminder {
 
     @Override
     public String toString() {
-        return "ContractEventReminder [id=" + id + ", eventType=" + eventType + ", eventReminderDate=" + eventReminderDate + ", note=" + note
+        return "ContractEventReminder [id=" + id + ", eventType=" + eventType + ", eventReminderDate="
+                + eventReminderDate + ", sent=" + sent + ", note=" + note
                 + ", contract=" + contract + "]";
     }
 

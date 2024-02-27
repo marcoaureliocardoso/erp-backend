@@ -39,8 +39,7 @@ public class Project {
     public Project() {
     }
 
-    public Project(Long id, String name, String code, Grantor grantor, LocalDate startDate, LocalDate endDate) {
-        this.id = id;
+    public Project(String name, String code, Grantor grantor, LocalDate startDate, LocalDate endDate) {
         this.name = name;
         this.code = code;
         this.grantor = grantor;

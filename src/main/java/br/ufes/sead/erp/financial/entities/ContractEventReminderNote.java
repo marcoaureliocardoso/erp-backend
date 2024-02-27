@@ -1,8 +1,14 @@
 package br.ufes.sead.erp.financial.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -10,38 +16,57 @@ import jakarta.persistence.Table;
 public class ContractEventReminderNote {
     @Id
     private Long id;
+
     @Column(nullable = false)
-    private String note;
+    private String content;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id")
+    @MapsId
+    @JsonIgnoreProperties("note")
+    private ContractEventReminder eventReminder;
 
     public ContractEventReminderNote() {
     }
 
-    public ContractEventReminderNote(Long id, String note) {
-        this.id = id;
-        this.note = note;
+    public ContractEventReminderNote(String content) {
+        this.content = content;
     }
 
-    public long getId() {
+    public ContractEventReminderNote(ContractEventReminder eventReminder, String content) {
+        this.content = content;
+        this.eventReminder = eventReminder;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getNote() {
-        return note;
+    public String getContent() {
+        return content;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public ContractEventReminder getEventReminder() {
+        return eventReminder;
+    }
+
+    public void setEventReminder(ContractEventReminder eventReminder) {
+        this.eventReminder = eventReminder;
     }
 
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (id ^ (id >>> 32));
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
 
@@ -54,14 +79,18 @@ public class ContractEventReminderNote {
         if (getClass() != obj.getClass())
             return false;
         ContractEventReminderNote other = (ContractEventReminderNote) obj;
-        if (id != other.id)
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "ContractEventReminderNote [id=" + id + ", note=" + note + "]";
+        return "ContractEventReminderNote [id=" + id + ", content=" + content + ", eventReminder="
+                + eventReminder + "]";
     }
 
 }

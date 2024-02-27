@@ -26,8 +26,7 @@ public class Grantor {
     public Grantor() {
     }
 
-    public Grantor(Long id, String name) {
-        this.id = id;
+    public Grantor(String name) {
         this.name = name;
     }
 

@@ -21,26 +21,27 @@ public class Contract {
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(nullable = false)
     private LocalDate startDate;
+
     @Column(nullable = false)
     private LocalDate endDate;
 
-    @OneToMany(mappedBy = "contract")
+    @OneToMany(mappedBy = "contract", cascade = { jakarta.persistence.CascadeType.ALL }, orphanRemoval = true)
     @JsonIgnoreProperties("contract")
     private List<ContractEventReminder> eventReminders = new ArrayList<>();
 
-    // @ManyToOne
-    // @PrimaryKeyJoinColumn
-    // private Grantor grantor;
     @ManyToOne
     @PrimaryKeyJoinColumn
     @JsonIgnoreProperties("contracts")
     private Project project;
+
     @ManyToOne
     @PrimaryKeyJoinColumn
     @JsonIgnoreProperties("contracts")
     private Course course;
+
     @ManyToOne
     @PrimaryKeyJoinColumn
     @JsonIgnoreProperties("contracts")
@@ -49,20 +50,19 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(Long id, Project project, Course course, Employee employee, LocalDate startDate,
+    public Contract(Project project, Course course, Employee employee, LocalDate startDate,
             LocalDate endDate) {
-        this.id = id;
-        // this.grantor = grantor;
         this.project = project;
         this.course = course;
         this.employee = employee;
         this.startDate = startDate;
-        this.endDate = endDate;
+        if (endDate == null)
+            this.endDate = startDate.plusYears(1);
+        else
+            this.endDate = endDate;
     }
 
-    public Contract(Long id, Project project, Course course, Employee employee, LocalDate startDate) {
-        this.id = id;
-        // this.grantor = grantor;
+    public Contract(Project project, Course course, Employee employee, LocalDate startDate) {
         this.project = project;
         this.course = course;
         this.employee = employee;
@@ -77,14 +77,6 @@ public class Contract {
     public void setId(long id) {
         this.id = id;
     }
-
-    // public Grantor getGrantor() {
-    // return grantor;
-    // }
-
-    // public void setGrantor(Grantor grantor) {
-    // this.grantor = grantor;
-    // }
 
     public Project getProject() {
         return project;
@@ -144,6 +136,10 @@ public class Contract {
 
     public List<ContractEventReminder> getEventReminders() {
         return eventReminders;
+    }
+
+    public void addEventReminder(ContractEventReminder eventReminder) {
+        eventReminders.add(eventReminder);
     }
 
     @Override
