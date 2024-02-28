@@ -20,7 +20,7 @@ import br.ufes.sead.erp.financial.services.ContractEventReminderService;
 
 @RestController
 @RequestMapping(value = "/api/v1/financial/contract-event-reminders")
-public class ContractEventResource {
+public class ContractEventReminderResource {
 
     @Autowired
     private ContractEventReminderService service;
@@ -54,6 +54,12 @@ public class ContractEventResource {
     @PutMapping(value = "/{id}")
     public ResponseEntity<ContractEventReminder> update(@PathVariable Long id, @RequestBody ContractEventReminder obj) {
         obj = service.update(id, obj);
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @PutMapping(value = "/{id}/note")
+    public ResponseEntity<ContractEventReminder> updateNote(@PathVariable Long id, @RequestBody ContractEventReminder obj) {
+        obj = service.updateNote(id, obj);
         return ResponseEntity.ok().body(obj);
     }
 }

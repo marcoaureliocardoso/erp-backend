@@ -8,6 +8,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import br.ufes.sead.erp.financial.entities.ContractEventReminder;
+import br.ufes.sead.erp.financial.entities.ContractEventReminderNote;
 import br.ufes.sead.erp.financial.repositories.ContractEventReminderRepository;
 import br.ufes.sead.erp.financial.services.exceptions.DatabaseException;
 import br.ufes.sead.erp.financial.services.exceptions.ResourceNotFoundException;
@@ -61,6 +62,24 @@ public class ContractEventReminderService {
 
             contractEventEntityReference.setEventType(contractEventReminder.getEventType());
             contractEventEntityReference.setEventReminderDate(contractEventReminder.getEventReminderDate());
+
+            return contractEventRepository.save(contractEventEntityReference);
+        } catch (EntityNotFoundException e) {
+            throw new ResourceNotFoundException(id);
+        }
+    }
+
+    public ContractEventReminder updateNote(Long id, ContractEventReminder contractEventReminder) {
+        try {
+            ContractEventReminder contractEventEntityReference = contractEventRepository.getReferenceById(id);
+
+            ContractEventReminderNote newNote = contractEventReminder.getNote();
+            
+            if (contractEventEntityReference.getNote() == null) {
+                contractEventEntityReference.setNote(new ContractEventReminderNote(newNote.getContent(), contractEventEntityReference));
+            } else {
+                contractEventEntityReference.getNote().setContent(newNote.getContent());
+            }
 
             return contractEventRepository.save(contractEventEntityReference);
         } catch (EntityNotFoundException e) {

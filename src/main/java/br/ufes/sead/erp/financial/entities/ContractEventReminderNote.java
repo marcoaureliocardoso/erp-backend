@@ -1,13 +1,12 @@
 package br.ufes.sead.erp.financial.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
@@ -15,25 +14,26 @@ import jakarta.persistence.Table;
 @Table(name = "contract_event_notes")
 public class ContractEventReminderNote {
     @Id
+    @GeneratedValue
     private Long id;
 
-    @Column(nullable = false)
     private String content;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id")
-    @MapsId
-    @JsonIgnoreProperties("note")
+    @OneToOne
+    @JoinColumn
+    @JsonIgnore
     private ContractEventReminder eventReminder;
 
     public ContractEventReminderNote() {
     }
 
-    public ContractEventReminderNote(String content) {
+    public ContractEventReminderNote(String content, ContractEventReminder eventReminder) {
         this.content = content;
+        this.eventReminder = eventReminder;
     }
 
-    public ContractEventReminderNote(ContractEventReminder eventReminder, String content) {
+    public ContractEventReminderNote(Long id, String content, ContractEventReminder eventReminder) {
+        this.id = id;
         this.content = content;
         this.eventReminder = eventReminder;
     }
@@ -89,8 +89,7 @@ public class ContractEventReminderNote {
 
     @Override
     public String toString() {
-        return "ContractEventReminderNote [id=" + id + ", content=" + content + ", eventReminder="
-                + eventReminder + "]";
+        return "ContractEventReminderNote [id=" + id + ", content=" + content + "]";
     }
 
 }

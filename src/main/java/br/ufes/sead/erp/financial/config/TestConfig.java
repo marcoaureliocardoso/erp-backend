@@ -232,8 +232,7 @@ public class TestConfig implements CommandLineRunner {
                 List<ContractEventReminder> contractEventReminders = contractEventRepository.findAll();
 
                 for (ContractEventReminder contractEventReminder : contractEventReminders) {
-                        ContractEventReminderNote note = new ContractEventReminderNote(contractEventReminder,
-                                        "Some notes " + contractEventReminder.getId() + ".");
+                        ContractEventReminderNote note = new ContractEventReminderNote("Some notes " + contractEventReminder.getId() + ".", contractEventReminder);
                         contractEventReminder.setNote(note);
 
                         contractEventRepository.save(contractEventReminder);
