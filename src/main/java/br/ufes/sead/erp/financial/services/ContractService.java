@@ -1,6 +1,5 @@
 package br.ufes.sead.erp.financial.services;
 
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,8 +13,6 @@ import br.ufes.sead.erp.financial.entities.enums.EventType;
 import br.ufes.sead.erp.financial.repositories.ContractRepository;
 import br.ufes.sead.erp.financial.services.exceptions.DatabaseException;
 import br.ufes.sead.erp.financial.services.exceptions.ResourceNotFoundException;
-import br.ufes.sead.erp.shared.email.Email;
-import br.ufes.sead.erp.shared.email.EmailService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import jakarta.transaction.Transactional.TxType;
@@ -26,10 +23,10 @@ public class ContractService {
     @Autowired
     private ContractRepository contractRepository;
 
-    @Autowired
-    private EmailService emailService;
+    // @Autowired
+    // private EmailService emailService;
 
-    private final String recipients = "alan@gmail.com, charlie@gmail.com";
+    // private final String recipients = "alan@gmail.com, charlie@gmail.com";
 
     public List<Contract> findAll() {
         return contractRepository.findAll();
@@ -60,18 +57,18 @@ public class ContractService {
         contract.addEventReminder(report2DeadlineReminder);
         contract.addEventReminder(contractEndReminder);
 
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        // DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        String subject = "[**TESTE**] Novo Termo Cadastrado [" + contract.getEmployee().getGivenName() + " " + contract.getEmployee().getSurname() + "]";
+        // String subject = "[**TESTE**] Novo Termo Cadastrado [" + contract.getEmployee().getGivenName() + " " + contract.getEmployee().getSurname() + "]";
 
-        String message = "Um novo termo de contrato foi cadastrado" + "\n\n" +
-                "Nome: " + contract.getEmployee().getGivenName() + " " + contract.getEmployee().getSurname() + "\n" +
-                "Projeto: " + contract.getProject().getName() + "\n" +
-                "Curso: " + contract.getCourse().getName() + "\n" +
-                "Data de início: " + contract.getStartDate().format(formatter) + "\n" +
-                "Data de término: " + contract.getEndDate().format(formatter);
+        // String message = "Um novo termo de contrato foi cadastrado" + "\n\n" +
+        //         "Nome: " + contract.getEmployee().getGivenName() + " " + contract.getEmployee().getSurname() + "\n" +
+        //         "Projeto: " + contract.getProject().getName() + "\n" +
+        //         "Curso: " + contract.getCourse().getName() + "\n" +
+        //         "Data de início: " + contract.getStartDate().format(formatter) + "\n" +
+        //         "Data de término: " + contract.getEndDate().format(formatter);
 
-        emailService.sendEmail(new Email(recipients, subject, message, null));
+        // emailService.sendEmail(new Email(recipients, subject, message, null));
 
         // try {
         //     File file = new File("src/main/resources/test.txt");

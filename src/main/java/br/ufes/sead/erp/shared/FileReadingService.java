@@ -1,19 +1,23 @@
 package br.ufes.sead.erp.shared;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FileReadingService {
 
+    @Autowired
+    ResourceLoader resourceLoader;
+
     public String readFileAsString(String filePath) {
         try {
-            return Files.readString(Path.of(filePath));
-        } catch (IOException e) {
-            throw new RuntimeException("Failed to read file: " + filePath, e);
+            Resource resource = resourceLoader.getResource("classpath:" + filePath);
+
+            return new String(resource.getInputStream().readAllBytes());
+        } catch (Exception e) {
+            return "Error reading file: " + e.getMessage();
         }
     }
 }

@@ -1,5 +1,6 @@
 package br.ufes.sead.erp.financial.services;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -85,5 +86,10 @@ public class ContractEventReminderService {
         } catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException(id);
         }
+    }
+
+    public List<ContractEventReminder> findOverdue() {
+        LocalDate today = LocalDate.now();
+        return contractEventRepository.findOverdue(today);
     }
 }

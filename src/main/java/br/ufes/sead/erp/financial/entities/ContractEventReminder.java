@@ -136,4 +136,21 @@ public class ContractEventReminder {
                 + ", contract=" + contract + "]";
     }
 
+    public String eventTypeLabel() {
+        switch (eventType) {
+            case RECESS1:
+                return "1° Recesso";
+            case RECESS2:
+                return "2° Recesso";
+            case REPORT1_DELIVERY:
+                return "1ª Entrega de Relatório";
+            case REPORT2_DELIVERY:
+                return "2ª Entrega de Relatório";
+            case CONTRACT_END:
+                return "Fim do Contrato";
+            default:
+                return "Evento Desconhecido";
+        }
+    }
+
 }

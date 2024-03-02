@@ -30,7 +30,7 @@ public class EmailService {
             message.setRecipients(MimeMessage.RecipientType.TO, email.getRecipients());
             message.setSubject(email.getSubject());
 
-            String htmlContent = fileReadingService.readFileAsString("src/main/resources/templates/email-template.html");
+            String htmlContent = fileReadingService.readFileAsString("templates/email-template.html");
 
             htmlContent = htmlContent.replace("{{message}}", email.getBody());
             htmlContent = htmlContent.replace("{{year}}", String.valueOf(java.time.LocalDate.now().getYear()));
