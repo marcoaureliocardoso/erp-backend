@@ -15,32 +15,33 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import br.ufes.sead.erp.financial.fest.entities.Contract;
-import br.ufes.sead.erp.financial.fest.services.ContractService;
+import br.ufes.sead.erp.financial.fest.entities.BondEventReminder;
+import br.ufes.sead.erp.financial.fest.services.BondEventReminderService;
 
 @RestController
-@RequestMapping(value = "/api/v1/financial/fest/contracts")
-public class ContractResource {
+@RequestMapping(value = "/api/v1/financial/fest/bond-event-reminders")
+public class BondEventReminderResource {
 
     @Autowired
-    private ContractService service;
+    private BondEventReminderService service;
 
     @GetMapping
-    public ResponseEntity<List<Contract>> findAll() {
-        List<Contract> list = service.findAll();
+    public ResponseEntity<List<BondEventReminder>> findAll() {
+        List<BondEventReminder> list = service.findAll();
         return ResponseEntity.ok().body(list);
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<Contract> findById(@PathVariable Long id) {
-        Contract obj = service.findById(id);
+    public ResponseEntity<BondEventReminder> findById(@PathVariable Long id) {
+        BondEventReminder obj = service.findById(id);
         return ResponseEntity.ok().body(obj);
     }
 
     @PostMapping
-    public ResponseEntity<Contract> insert(@RequestBody Contract obj) {
+    public ResponseEntity<BondEventReminder> insert(@RequestBody BondEventReminder obj) {
         obj = service.save(obj);
-        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
+        URI uri = URI.create(ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId())
+                .toUriString());
         return ResponseEntity.created(uri).body(obj);
     }
 
@@ -51,8 +52,14 @@ public class ContractResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Contract> update(@PathVariable Long id, @RequestBody Contract obj) {
+    public ResponseEntity<BondEventReminder> update(@PathVariable Long id, @RequestBody BondEventReminder obj) {
         obj = service.update(id, obj);
+        return ResponseEntity.ok().body(obj);
+    }
+
+    @PutMapping(value = "/{id}/note")
+    public ResponseEntity<BondEventReminder> updateNote(@PathVariable Long id, @RequestBody BondEventReminder obj) {
+        obj = service.updateNote(id, obj);
         return ResponseEntity.ok().body(obj);
     }
 }

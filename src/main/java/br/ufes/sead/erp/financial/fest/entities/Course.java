@@ -23,7 +23,7 @@ public class Course {
 
     @OneToMany(mappedBy = "course")
     @JsonIgnoreProperties({"course", "eventReminders"})
-    private List<Contract> contracts = new ArrayList<>();
+    private List<Bond> bonds = new ArrayList<>();
 
     public Course() {
     }
@@ -48,8 +48,8 @@ public class Course {
         this.name = name;
     }
 
-    public List<Contract> getContracts() {
-        return contracts;
+    public List<Bond> getBonds() {
+        return bonds;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class Course {
 
     @Override
     public String toString() {
-        return "Course [id=" + id + ", name=" + name + ", contracts=" + contracts + "]";
+        return "Course [id=" + id + ", name=" + name + ", bonds=" + bonds + "]";
     }
 
 }

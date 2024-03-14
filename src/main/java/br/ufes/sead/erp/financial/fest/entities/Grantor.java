@@ -20,7 +20,7 @@ public class Grantor {
     private String name;
 
     @OneToMany(mappedBy = "grantor")
-    @JsonIgnoreProperties({"grantor", "contracts"})
+    @JsonIgnoreProperties({"grantor", "bonds"})
     private List<Project> projects = new ArrayList<>();
 
     public Grantor() {

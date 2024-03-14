@@ -29,7 +29,7 @@ public class Project {
 
     @OneToMany(mappedBy = "project")
     @JsonIgnoreProperties({"project", "eventReminders"})
-    private List<Contract> contracts = new ArrayList<>();
+    private List<Bond> bonds = new ArrayList<>();
 
     @ManyToOne
     @PrimaryKeyJoinColumn
@@ -95,8 +95,8 @@ public class Project {
         this.endDate = endDate;
     }
 
-    public List<Contract> getContracts() {
-        return contracts;
+    public List<Bond> getBonds() {
+        return bonds;
     }
 
     @Override
@@ -124,7 +124,7 @@ public class Project {
     @Override
     public String toString() {
         return "Project [id=" + id + ", name=" + name + ", code=" + code + ", startDate=" + startDate + ", endDate="
-                + endDate + ", contracts=" + contracts + ", grantor=" + grantor + "]";
+                + endDate + ", bonds=" + bonds + ", grantor=" + grantor + "]";
     }
 
 }

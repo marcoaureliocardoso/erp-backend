@@ -18,8 +18,8 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "contract_event_reminders")
-public class ContractEventReminder {
+@Table(name = "bond_event_reminders")
+public class BondEventReminder {
     @Id
     @GeneratedValue
     private Long id;
@@ -34,26 +34,26 @@ public class ContractEventReminder {
 
     @OneToOne(mappedBy = "eventReminder", cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
-    private ContractEventReminderNote note;
+    private BondEventReminderNote note;
 
     @ManyToOne
     @PrimaryKeyJoinColumn
     @JsonIgnoreProperties({ "eventReminders", "project", "course" })
-    private Contract contract;
+    private Bond bond;
 
-    public ContractEventReminder() {
+    public BondEventReminder() {
     }
 
-    public ContractEventReminder(Contract contract, EventType eventType, LocalDate eventReminderDate, ContractEventReminderNote note) {
-        this.contract = contract;
+    public BondEventReminder(Bond bond, EventType eventType, LocalDate eventReminderDate, BondEventReminderNote note) {
+        this.bond = bond;
         this.eventType = eventType;
         this.eventReminderDate = eventReminderDate;
         this.sent = false;
         this.note = note;
     }
 
-    public ContractEventReminder(Contract contract, EventType eventType, LocalDate eventReminderDate) {
-        this.contract = contract;
+    public BondEventReminder(Bond bond, EventType eventType, LocalDate eventReminderDate) {
+        this.bond = bond;
         this.eventType = eventType;
         this.eventReminderDate = eventReminderDate;
         this.sent = false;
@@ -67,12 +67,12 @@ public class ContractEventReminder {
         this.id = id;
     }
 
-    public Contract getContract() {
-        return contract;
+    public Bond getBond() {
+        return bond;
     }
 
-    public void setContract(Contract contract) {
-        this.contract = contract;
+    public void setBond(Bond bond) {
+        this.bond = bond;
     }
 
     public EventType getEventType() {
@@ -99,11 +99,11 @@ public class ContractEventReminder {
         this.sent = sent;
     }
 
-    public ContractEventReminderNote getNote() {
+    public BondEventReminderNote getNote() {
         return note;
     }
 
-    public void setNote(ContractEventReminderNote note) {
+    public void setNote(BondEventReminderNote note) {
         this.note = note;
     }
 
@@ -123,7 +123,7 @@ public class ContractEventReminder {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ContractEventReminder other = (ContractEventReminder) obj;
+        BondEventReminder other = (BondEventReminder) obj;
         if (id != other.id)
             return false;
         return true;
@@ -131,9 +131,9 @@ public class ContractEventReminder {
 
     @Override
     public String toString() {
-        return "ContractEventReminder [id=" + id + ", eventType=" + eventType + ", eventReminderDate="
+        return "BondEventReminder [id=" + id + ", eventType=" + eventType + ", eventReminderDate="
                 + eventReminderDate + ", sent=" + sent + ", note=" + note
-                + ", contract=" + contract + "]";
+                + ", bond=" + bond + "]";
     }
 
     public String eventTypeLabel() {
@@ -146,8 +146,8 @@ public class ContractEventReminder {
                 return "1ª Entrega de Relatório";
             case REPORT2_DELIVERY:
                 return "2ª Entrega de Relatório";
-            case CONTRACT_END:
-                return "Fim do Contrato";
+            case BOND_END:
+                return "Fim do Vínculo";
             default:
                 return "Evento Desconhecido";
         }

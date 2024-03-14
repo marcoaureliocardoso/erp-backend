@@ -9,16 +9,16 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-import br.ufes.sead.erp.financial.fest.entities.Contract;
-import br.ufes.sead.erp.financial.fest.entities.ContractEventReminder;
-import br.ufes.sead.erp.financial.fest.entities.ContractEventReminderNote;
+import br.ufes.sead.erp.financial.fest.entities.Bond;
+import br.ufes.sead.erp.financial.fest.entities.BondEventReminder;
+import br.ufes.sead.erp.financial.fest.entities.BondEventReminderNote;
 import br.ufes.sead.erp.financial.fest.entities.Course;
 import br.ufes.sead.erp.financial.fest.entities.Employee;
 import br.ufes.sead.erp.financial.fest.entities.Grantor;
 import br.ufes.sead.erp.financial.fest.entities.Project;
 import br.ufes.sead.erp.financial.fest.entities.enums.EventType;
-import br.ufes.sead.erp.financial.fest.repositories.ContractEventReminderRepository;
-import br.ufes.sead.erp.financial.fest.repositories.ContractRepository;
+import br.ufes.sead.erp.financial.fest.repositories.BondEventReminderRepository;
+import br.ufes.sead.erp.financial.fest.repositories.BondRepository;
 import br.ufes.sead.erp.financial.fest.repositories.CourseRepository;
 import br.ufes.sead.erp.financial.fest.repositories.EmployeeRepository;
 import br.ufes.sead.erp.financial.fest.repositories.GrantorRepository;
@@ -37,9 +37,9 @@ public class TestConfig implements CommandLineRunner {
         @Autowired
         private EmployeeRepository employeeRepository;
         @Autowired
-        private ContractRepository contractRepository;
+        private BondRepository bondRepository;
         @Autowired
-        private ContractEventReminderRepository contractEventRepository;
+        private BondEventReminderRepository bondEventRepository;
 
         @Override
         public void run(String... args) throws Exception {
@@ -156,86 +156,86 @@ public class TestConfig implements CommandLineRunner {
                 employeeRepository.saveAll(
                                 Arrays.asList(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15));
 
-                Contract ct1 = new Contract(p1, c1, e1, LocalDate.parse("2019-02-01"));
-                Contract ct2 = new Contract(p2, c2, e2, LocalDate.parse("2018-05-01"));
-                Contract ct3 = new Contract(p3, c3, e3, LocalDate.parse("2021-07-01"));
-                Contract ct4 = new Contract(p4, c4, e4, LocalDate.parse("2017-03-01"));
-                Contract ct5 = new Contract(p5, c5, e5, LocalDate.parse("2022-10-01"));
-                Contract ct6 = new Contract(p6, c6, e6, LocalDate.parse("2020-12-01"));
-                Contract ct7 = new Contract(p7, c7, e7, LocalDate.parse("2019-11-01"));
-                Contract ct8 = new Contract(p8, c8, e8, LocalDate.parse("2021-04-01"));
-                Contract ct9 = new Contract(p9, c9, e9, LocalDate.parse("2019-07-01"));
-                Contract ct10 = new Contract(p10, c10, e10, LocalDate.parse("2022-01-01"));
-                Contract ct11 = new Contract(p11, c11, e11, LocalDate.parse("2020-09-01"));
-                Contract ct12 = new Contract(p12, c12, e12, LocalDate.parse("2018-06-01"));
-                Contract ct13 = new Contract(p13, c13, e13, LocalDate.parse("2021-05-01"));
-                Contract ct14 = new Contract(p14, c14, e14, LocalDate.parse("2019-08-01"));
-                Contract ct15 = new Contract(p15, c15, e15, LocalDate.parse("2022-03-01"));
+                Bond ct1 = new Bond(p1, c1, e1, LocalDate.parse("2019-02-01"));
+                Bond ct2 = new Bond(p2, c2, e2, LocalDate.parse("2018-05-01"));
+                Bond ct3 = new Bond(p3, c3, e3, LocalDate.parse("2021-07-01"));
+                Bond ct4 = new Bond(p4, c4, e4, LocalDate.parse("2017-03-01"));
+                Bond ct5 = new Bond(p5, c5, e5, LocalDate.parse("2022-10-01"));
+                Bond ct6 = new Bond(p6, c6, e6, LocalDate.parse("2020-12-01"));
+                Bond ct7 = new Bond(p7, c7, e7, LocalDate.parse("2019-11-01"));
+                Bond ct8 = new Bond(p8, c8, e8, LocalDate.parse("2021-04-01"));
+                Bond ct9 = new Bond(p9, c9, e9, LocalDate.parse("2019-07-01"));
+                Bond ct10 = new Bond(p10, c10, e10, LocalDate.parse("2022-01-01"));
+                Bond ct11 = new Bond(p11, c11, e11, LocalDate.parse("2020-09-01"));
+                Bond ct12 = new Bond(p12, c12, e12, LocalDate.parse("2018-06-01"));
+                Bond ct13 = new Bond(p13, c13, e13, LocalDate.parse("2021-05-01"));
+                Bond ct14 = new Bond(p14, c14, e14, LocalDate.parse("2019-08-01"));
+                Bond ct15 = new Bond(p15, c15, e15, LocalDate.parse("2022-03-01"));
 
-                contractRepository.saveAll(Arrays.asList(ct1, ct2, ct3, ct4, ct5, ct6, ct7, ct8, ct9, ct10, ct11, ct12,
+                bondRepository.saveAll(Arrays.asList(ct1, ct2, ct3, ct4, ct5, ct6, ct7, ct8, ct9, ct10, ct11, ct12,
                                 ct13, ct14, ct15));
 
-                ContractEventReminder ce1 = new ContractEventReminder(ct1, EventType.RECESS1,
+                BondEventReminder ce1 = new BondEventReminder(ct1, EventType.RECESS1,
                                 LocalDate.parse("2022-11-23"));
-                ContractEventReminder ce2 = new ContractEventReminder(ct1, EventType.REPORT1_DELIVERY,
+                BondEventReminder ce2 = new BondEventReminder(ct1, EventType.REPORT1_DELIVERY,
                                 LocalDate.parse("2022-11-24"));
-                ContractEventReminder ce3 = new ContractEventReminder(ct1, EventType.RECESS2,
+                BondEventReminder ce3 = new BondEventReminder(ct1, EventType.RECESS2,
                                 LocalDate.parse("2023-05-24"));
-                ContractEventReminder ce4 = new ContractEventReminder(ct1, EventType.REPORT2_DELIVERY,
+                BondEventReminder ce4 = new BondEventReminder(ct1, EventType.REPORT2_DELIVERY,
                                 LocalDate.parse("2023-05-25"));
-                ContractEventReminder ce5 = new ContractEventReminder(ct1, EventType.CONTRACT_END,
+                BondEventReminder ce5 = new BondEventReminder(ct1, EventType.BOND_END,
                                 LocalDate.parse("2023-07-09"));
-                ContractEventReminder ce6 = new ContractEventReminder(ct2, EventType.RECESS1,
+                BondEventReminder ce6 = new BondEventReminder(ct2, EventType.RECESS1,
                                 LocalDate.parse("2025-03-07"));
-                ContractEventReminder ce7 = new ContractEventReminder(ct2, EventType.REPORT1_DELIVERY,
+                BondEventReminder ce7 = new BondEventReminder(ct2, EventType.REPORT1_DELIVERY,
                                 LocalDate.parse("2025-03-08"));
-                ContractEventReminder ce8 = new ContractEventReminder(ct2, EventType.RECESS2,
+                BondEventReminder ce8 = new BondEventReminder(ct2, EventType.RECESS2,
                                 LocalDate.parse("2025-09-07"));
-                ContractEventReminder ce9 = new ContractEventReminder(ct2, EventType.REPORT2_DELIVERY,
+                BondEventReminder ce9 = new BondEventReminder(ct2, EventType.REPORT2_DELIVERY,
                                 LocalDate.parse("2025-09-08"));
-                ContractEventReminder ce10 = new ContractEventReminder(ct2, EventType.CONTRACT_END,
+                BondEventReminder ce10 = new BondEventReminder(ct2, EventType.BOND_END,
                                 LocalDate.parse("2025-10-23"));
-                ContractEventReminder ce11 = new ContractEventReminder(ct3, EventType.RECESS1,
+                BondEventReminder ce11 = new BondEventReminder(ct3, EventType.RECESS1,
                                 LocalDate.parse("2020-10-01"));
-                ContractEventReminder ce12 = new ContractEventReminder(ct3, EventType.REPORT1_DELIVERY,
+                BondEventReminder ce12 = new BondEventReminder(ct3, EventType.REPORT1_DELIVERY,
                                 LocalDate.parse("2020-10-02"));
-                ContractEventReminder ce13 = new ContractEventReminder(ct3, EventType.RECESS2,
+                BondEventReminder ce13 = new BondEventReminder(ct3, EventType.RECESS2,
                                 LocalDate.parse("2021-04-01"));
-                ContractEventReminder ce14 = new ContractEventReminder(ct3, EventType.REPORT2_DELIVERY,
+                BondEventReminder ce14 = new BondEventReminder(ct3, EventType.REPORT2_DELIVERY,
                                 LocalDate.parse("2021-04-02"));
-                ContractEventReminder ce15 = new ContractEventReminder(ct3, EventType.CONTRACT_END,
+                BondEventReminder ce15 = new BondEventReminder(ct3, EventType.BOND_END,
                                 LocalDate.parse("2021-05-17"));
-                ContractEventReminder ce16 = new ContractEventReminder(ct4, EventType.RECESS1,
+                BondEventReminder ce16 = new BondEventReminder(ct4, EventType.RECESS1,
                                 LocalDate.parse("2024-12-10"));
-                ContractEventReminder ce17 = new ContractEventReminder(ct4, EventType.REPORT1_DELIVERY,
+                BondEventReminder ce17 = new BondEventReminder(ct4, EventType.REPORT1_DELIVERY,
                                 LocalDate.parse("2024-12-11"));
-                ContractEventReminder ce18 = new ContractEventReminder(ct4, EventType.RECESS2,
+                BondEventReminder ce18 = new BondEventReminder(ct4, EventType.RECESS2,
                                 LocalDate.parse("2025-06-10"));
-                ContractEventReminder ce19 = new ContractEventReminder(ct4, EventType.REPORT2_DELIVERY,
+                BondEventReminder ce19 = new BondEventReminder(ct4, EventType.REPORT2_DELIVERY,
                                 LocalDate.parse("2025-06-11"));
-                ContractEventReminder ce20 = new ContractEventReminder(ct4, EventType.CONTRACT_END,
+                BondEventReminder ce20 = new BondEventReminder(ct4, EventType.BOND_END,
                                 LocalDate.parse("2025-07-26"));
-                ContractEventReminder ce21 = new ContractEventReminder(ct5, EventType.RECESS1,
+                BondEventReminder ce21 = new BondEventReminder(ct5, EventType.RECESS1,
                                 LocalDate.parse("2024-05-13"));
-                ContractEventReminder ce22 = new ContractEventReminder(ct5, EventType.REPORT1_DELIVERY,
+                BondEventReminder ce22 = new BondEventReminder(ct5, EventType.REPORT1_DELIVERY,
                                 LocalDate.parse("2024-05-14"));
-                ContractEventReminder ce23 = new ContractEventReminder(ct5, EventType.RECESS2,
+                BondEventReminder ce23 = new BondEventReminder(ct5, EventType.RECESS2,
                                 LocalDate.parse("2024-11-13"));
-                ContractEventReminder ce24 = new ContractEventReminder(ct5, EventType.REPORT2_DELIVERY,
+                BondEventReminder ce24 = new BondEventReminder(ct5, EventType.REPORT2_DELIVERY,
                                 LocalDate.parse("2024-11-14"));
-                ContractEventReminder ce25 = new ContractEventReminder(ct5, EventType.CONTRACT_END,
+                BondEventReminder ce25 = new BondEventReminder(ct5, EventType.BOND_END,
                                 LocalDate.parse("2024-12-29"));
 
-                contractEventRepository.saveAll(Arrays.asList(ce1, ce2, ce3, ce4, ce5, ce6, ce7, ce8, ce9, ce10, ce11,
+                bondEventRepository.saveAll(Arrays.asList(ce1, ce2, ce3, ce4, ce5, ce6, ce7, ce8, ce9, ce10, ce11,
                                 ce12, ce13, ce14, ce15, ce16, ce17, ce18, ce19, ce20, ce21, ce22, ce23, ce24, ce25));
 
-                List<ContractEventReminder> contractEventReminders = contractEventRepository.findAll();
+                List<BondEventReminder> bondEventReminders = bondEventRepository.findAll();
 
-                for (ContractEventReminder contractEventReminder : contractEventReminders) {
-                        ContractEventReminderNote note = new ContractEventReminderNote("Some notes " + contractEventReminder.getId() + ".", contractEventReminder);
-                        contractEventReminder.setNote(note);
+                for (BondEventReminder bondEventReminder : bondEventReminders) {
+                        BondEventReminderNote note = new BondEventReminderNote("Some notes " + bondEventReminder.getId() + ".", bondEventReminder);
+                        bondEventReminder.setNote(note);
 
-                        contractEventRepository.save(contractEventReminder);
+                        bondEventRepository.save(bondEventReminder);
                 }
         }
 

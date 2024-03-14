@@ -16,8 +16,8 @@ import jakarta.persistence.PrimaryKeyJoinColumn;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "contracts")
-public class Contract {
+@Table(name = "bonds")
+public class Bond {
     @Id
     @GeneratedValue
     private Long id;
@@ -28,29 +28,29 @@ public class Contract {
     @Column(nullable = false)
     private LocalDate endDate;
 
-    @OneToMany(mappedBy = "contract", cascade = { jakarta.persistence.CascadeType.ALL }, orphanRemoval = true)
-    @JsonIgnoreProperties("contract")
-    private List<ContractEventReminder> eventReminders = new ArrayList<>();
+    @OneToMany(mappedBy = "bond", cascade = { jakarta.persistence.CascadeType.ALL }, orphanRemoval = true)
+    @JsonIgnoreProperties("bond")
+    private List<BondEventReminder> eventReminders = new ArrayList<>();
 
     @ManyToOne
     @PrimaryKeyJoinColumn
-    @JsonIgnoreProperties("contracts")
+    @JsonIgnoreProperties("bonds")
     private Project project;
 
     @ManyToOne
     @PrimaryKeyJoinColumn
-    @JsonIgnoreProperties("contracts")
+    @JsonIgnoreProperties("bonds")
     private Course course;
 
     @ManyToOne
     @PrimaryKeyJoinColumn
-    @JsonIgnoreProperties("contracts")
+    @JsonIgnoreProperties("bonds")
     private Employee employee;
 
-    public Contract() {
+    public Bond() {
     }
 
-    public Contract(Project project, Course course, Employee employee, LocalDate startDate,
+    public Bond(Project project, Course course, Employee employee, LocalDate startDate,
             LocalDate endDate) {
         this.project = project;
         this.course = course;
@@ -62,7 +62,7 @@ public class Contract {
             this.endDate = endDate;
     }
 
-    public Contract(Project project, Course course, Employee employee, LocalDate startDate) {
+    public Bond(Project project, Course course, Employee employee, LocalDate startDate) {
         this.project = project;
         this.course = course;
         this.employee = employee;
@@ -134,11 +134,11 @@ public class Contract {
         return startDate.plusMonths(12);
     }
 
-    public List<ContractEventReminder> getEventReminders() {
+    public List<BondEventReminder> getEventReminders() {
         return eventReminders;
     }
 
-    public void addEventReminder(ContractEventReminder eventReminder) {
+    public void addEventReminder(BondEventReminder eventReminder) {
         eventReminders.add(eventReminder);
     }
 
@@ -158,7 +158,7 @@ public class Contract {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Contract other = (Contract) obj;
+        Bond other = (Bond) obj;
         if (id != other.id)
             return false;
         return true;
@@ -166,7 +166,7 @@ public class Contract {
 
     @Override
     public String toString() {
-        return "Contract [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", eventReminders=" + eventReminders
+        return "Bond [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", eventReminders=" + eventReminders
                 + ", project=" + project + ", course=" + course + ", employee=" + employee
                 + "firstRecessInformLimitDate" + getFirstRecessInformLimitDate() + "secondRecessInformLimitDate"
                 + getSecondRecessInformLimitDate() + "firstReportLimitDate" + getFirstReportLimitDate()

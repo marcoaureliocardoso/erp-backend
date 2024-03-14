@@ -10,8 +10,8 @@ import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "contract_event_notes")
-public class ContractEventReminderNote {
+@Table(name = "bond_event_notes")
+public class BondEventReminderNote {
     @Id
     @GeneratedValue
     private Long id;
@@ -21,17 +21,17 @@ public class ContractEventReminderNote {
     @OneToOne
     @JoinColumn
     @JsonIgnore
-    private ContractEventReminder eventReminder;
+    private BondEventReminder eventReminder;
 
-    public ContractEventReminderNote() {
+    public BondEventReminderNote() {
     }
 
-    public ContractEventReminderNote(String content, ContractEventReminder eventReminder) {
+    public BondEventReminderNote(String content, BondEventReminder eventReminder) {
         this.content = content;
         this.eventReminder = eventReminder;
     }
 
-    public ContractEventReminderNote(Long id, String content, ContractEventReminder eventReminder) {
+    public BondEventReminderNote(Long id, String content, BondEventReminder eventReminder) {
         this.id = id;
         this.content = content;
         this.eventReminder = eventReminder;
@@ -53,11 +53,11 @@ public class ContractEventReminderNote {
         this.content = content;
     }
 
-    public ContractEventReminder getEventReminder() {
+    public BondEventReminder getEventReminder() {
         return eventReminder;
     }
 
-    public void setEventReminder(ContractEventReminder eventReminder) {
+    public void setEventReminder(BondEventReminder eventReminder) {
         this.eventReminder = eventReminder;
     }
 
@@ -77,7 +77,7 @@ public class ContractEventReminderNote {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        ContractEventReminderNote other = (ContractEventReminderNote) obj;
+        BondEventReminderNote other = (BondEventReminderNote) obj;
         if (id == null) {
             if (other.id != null)
                 return false;
@@ -88,7 +88,7 @@ public class ContractEventReminderNote {
 
     @Override
     public String toString() {
-        return "ContractEventReminderNote [id=" + id + ", content=" + content + "]";
+        return "BondEventReminderNote [id=" + id + ", content=" + content + "]";
     }
 
 }
