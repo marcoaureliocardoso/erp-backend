@@ -27,3 +27,8 @@ spring:
           auth: true
           starttls:
             enable: true
+
+erp:
+  mail:
+    fest:
+      recipients: bonnie@gmail.com,clyde@gmail.com

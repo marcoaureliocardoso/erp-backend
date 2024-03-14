@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -21,14 +22,15 @@ public class ScheduledTasks {
     @Autowired
     private EmailService emailService;
 
+    @Value("${erp.mail.fest.recipients}")
+    String festRecipients;
+
     DateTimeFormatter logFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     DateTimeFormatter simpleDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     // @Scheduled(cron = "* 7 3/12 * * *")
     @Scheduled(cron = "0/30 * * * * *")
     public void sendContractsEventsEmails() {
-
-        String recipients = "jake@gmail.com";
 
         System.out.println(LocalDateTime.now().format(logFormat) + " | Checking for overdue contracts events reminders...");
 
@@ -38,7 +40,7 @@ public class ScheduledTasks {
             System.out.println("Sending email for contract " + reminder.getContract().getId() + " event " + reminder.getEventType());
 
             Email email = new Email(
-                recipients,
+                this.festRecipients + "," + reminder.getContract().getEmployee().getEmail(),
 
                 "Alerta de evento: " + reminder.eventTypeLabel() + " do contrato de "
                     + reminder.getContract().getEmployee().getGivenName() + " "
