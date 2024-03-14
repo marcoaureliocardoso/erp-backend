@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
-import br.ufes.sead.erp.financial.entities.ContractEventReminder;
-import br.ufes.sead.erp.financial.services.ContractEventReminderService;
+import br.ufes.sead.erp.financial.fest.entities.ContractEventReminder;
+import br.ufes.sead.erp.financial.fest.services.ContractEventReminderService;
 
 @Component
 public class ScheduledTasks {
