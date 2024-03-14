@@ -6,8 +6,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.ufes.sead.erp.financial.fest.entities.enums.BondType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
@@ -21,6 +24,10 @@ public class Bond {
     @Id
     @GeneratedValue
     private Long id;
+
+    @Column(nullable = false, length = 20)
+    @Enumerated(EnumType.STRING)
+    private BondType type;
 
     @Column(nullable = false)
     private LocalDate startDate;
@@ -50,8 +57,9 @@ public class Bond {
     public Bond() {
     }
 
-    public Bond(Project project, Course course, Employee employee, LocalDate startDate,
+    public Bond(BondType type, Project project, Course course, Employee employee, LocalDate startDate,
             LocalDate endDate) {
+        this.type = type;
         this.project = project;
         this.course = course;
         this.employee = employee;
@@ -62,7 +70,8 @@ public class Bond {
             this.endDate = endDate;
     }
 
-    public Bond(Project project, Course course, Employee employee, LocalDate startDate) {
+    public Bond(BondType type, Project project, Course course, Employee employee, LocalDate startDate) {
+        this.type = type;
         this.project = project;
         this.course = course;
         this.employee = employee;
@@ -70,12 +79,20 @@ public class Bond {
         this.endDate = startDate.plusYears(1);
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public BondType getType() {
+        return type;
+    }
+
+    public void setType(BondType type) {
+        this.type = type;
     }
 
     public Project getProject() {
@@ -146,7 +163,7 @@ public class Bond {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (id ^ (id >>> 32));
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
 
@@ -159,14 +176,17 @@ public class Bond {
         if (getClass() != obj.getClass())
             return false;
         Bond other = (Bond) obj;
-        if (id != other.id)
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         return true;
     }
 
     @Override
     public String toString() {
-        return "Bond [id=" + id + ", startDate=" + startDate + ", endDate=" + endDate + ", eventReminders=" + eventReminders
+        return "Bond [id=" + id + ", type=" + type + ", startDate=" + startDate + ", endDate=" + endDate + ", eventReminders=" + eventReminders
                 + ", project=" + project + ", course=" + course + ", employee=" + employee
                 + "firstRecessInformLimitDate" + getFirstRecessInformLimitDate() + "secondRecessInformLimitDate"
                 + getSecondRecessInformLimitDate() + "firstReportLimitDate" + getFirstReportLimitDate()
