@@ -29,6 +29,8 @@ public class Bond {
     @Enumerated(EnumType.STRING)
     private BondType type;
 
+    private String role;
+
     @Column(nullable = false)
     private LocalDate startDate;
 
@@ -61,9 +63,10 @@ public class Bond {
     public Bond() {
     }
 
-    public Bond(BondType type, Project project, Course course, Employee employee, LocalDate startDate,
+    public Bond(BondType type, String role, Project project, Course course, Employee employee, LocalDate startDate,
             LocalDate endDate) {
         this.type = type;
+        this.role = role;
         this.project = project;
         this.course = course;
         this.employee = employee;
@@ -74,8 +77,9 @@ public class Bond {
             this.endDate = endDate;
     }
 
-    public Bond(BondType type, Project project, Course course, Employee employee, LocalDate startDate) {
+    public Bond(BondType type, String role, Project project, Course course, Employee employee, LocalDate startDate) {
         this.type = type;
+        this.role = role;
         this.project = project;
         this.course = course;
         this.employee = employee;
@@ -97,6 +101,14 @@ public class Bond {
 
     public void setType(BondType type) {
         this.type = type;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Project getProject() {
@@ -198,8 +210,8 @@ public class Bond {
 
     @Override
     public String toString() {
-        return "Bond [id=" + id + ", type=" + type + ", startDate=" + startDate + ", endDate=" + endDate + ", eventReminders=" + eventReminders
-                + ", project=" + project + ", course=" + course + ", employee=" + employee
+        return "Bond [id=" + id + ", type=" + type + ", role=" + role + ", startDate=" + startDate + ", endDate=" + endDate + ", eventReminders=" + eventReminders
+                + ", terms=" + terms + ", project=" + project + ", course=" + course + ", employee=" + employee
                 + "firstRecessInformLimitDate" + getFirstRecessInformLimitDate() + "secondRecessInformLimitDate"
                 + getSecondRecessInformLimitDate() + "firstReportLimitDate" + getFirstReportLimitDate()
                 + "secondReportLimitDate" + getSecondReportLimitDate() + "]";

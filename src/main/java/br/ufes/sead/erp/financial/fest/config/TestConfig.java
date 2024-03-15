@@ -162,21 +162,21 @@ public class TestConfig implements CommandLineRunner {
                 employeeRepository.saveAll(
                                 Arrays.asList(e1, e2, e3, e4, e5, e6, e7, e8, e9, e10, e11, e12, e13, e14, e15));
 
-                Bond ct1 = new Bond(BondType.FULL_TIME, p1, c1, e1, LocalDate.parse("2019-02-01"));
-                Bond ct2 = new Bond(BondType.FULL_TIME, p2, c2, e2, LocalDate.parse("2018-05-01"));
-                Bond ct3 = new Bond(BondType.FULL_TIME, p3, c3, e3, LocalDate.parse("2021-07-01"));
-                Bond ct4 = new Bond(BondType.FULL_TIME, p4, c4, e4, LocalDate.parse("2017-03-01"));
-                Bond ct5 = new Bond(BondType.FULL_TIME, p5, c5, e5, LocalDate.parse("2022-10-01"));
-                Bond ct6 = new Bond(BondType.FULL_TIME, p6, c6, e6, LocalDate.parse("2020-12-01"));
-                Bond ct7 = new Bond(BondType.FULL_TIME, p7, c7, e7, LocalDate.parse("2019-11-01"));
-                Bond ct8 = new Bond(BondType.FULL_TIME, p8, c8, e8, LocalDate.parse("2021-04-01"));
-                Bond ct9 = new Bond(BondType.FULL_TIME, p9, c9, e9, LocalDate.parse("2019-07-01"));
-                Bond ct10 = new Bond(BondType.FULL_TIME, p10, c10, e10, LocalDate.parse("2022-01-01"));
-                Bond ct11 = new Bond(BondType.FULL_TIME, p11, c11, e11, LocalDate.parse("2020-09-01"));
-                Bond ct12 = new Bond(BondType.FULL_TIME, p12, c12, e12, LocalDate.parse("2018-06-01"));
-                Bond ct13 = new Bond(BondType.FULL_TIME, p13, c13, e13, LocalDate.parse("2021-05-01"));
-                Bond ct14 = new Bond(BondType.FULL_TIME, p14, c14, e14, LocalDate.parse("2019-08-01"));
-                Bond ct15 = new Bond(BondType.FULL_TIME, p15, c15, e15, LocalDate.parse("2022-03-01"));
+                Bond ct1 = new Bond(BondType.FULL_TIME, "Some role", p1, c1, e1, LocalDate.parse("2019-02-01"));
+                Bond ct2 = new Bond(BondType.FULL_TIME, "Some role", p2, c2, e2, LocalDate.parse("2018-05-01"));
+                Bond ct3 = new Bond(BondType.FULL_TIME, "Some role", p3, c3, e3, LocalDate.parse("2021-07-01"));
+                Bond ct4 = new Bond(BondType.FULL_TIME, "Some role", p4, c4, e4, LocalDate.parse("2017-03-01"));
+                Bond ct5 = new Bond(BondType.FULL_TIME, "Some role", p5, c5, e5, LocalDate.parse("2022-10-01"));
+                Bond ct6 = new Bond(BondType.FULL_TIME, "Some role", p6, c6, e6, LocalDate.parse("2020-12-01"));
+                Bond ct7 = new Bond(BondType.FULL_TIME, "Some role", p7, c7, e7, LocalDate.parse("2019-11-01"));
+                Bond ct8 = new Bond(BondType.FULL_TIME, "Some role", p8, c8, e8, LocalDate.parse("2021-04-01"));
+                Bond ct9 = new Bond(BondType.FULL_TIME, "Some role", p9, c9, e9, LocalDate.parse("2019-07-01"));
+                Bond ct10 = new Bond(BondType.FULL_TIME, "Some role", p10, c10, e10, LocalDate.parse("2022-01-01"));
+                Bond ct11 = new Bond(BondType.FULL_TIME, "Some role", p11, c11, e11, LocalDate.parse("2020-09-01"));
+                Bond ct12 = new Bond(BondType.FULL_TIME, "Some role", p12, c12, e12, LocalDate.parse("2018-06-01"));
+                Bond ct13 = new Bond(BondType.FULL_TIME, "Some role", p13, c13, e13, LocalDate.parse("2021-05-01"));
+                Bond ct14 = new Bond(BondType.FULL_TIME, "Some role", p14, c14, e14, LocalDate.parse("2019-08-01"));
+                Bond ct15 = new Bond(BondType.FULL_TIME, "Some role", p15, c15, e15, LocalDate.parse("2022-03-01"));
 
                 bondRepository.saveAll(Arrays.asList(ct1, ct2, ct3, ct4, ct5, ct6, ct7, ct8, ct9, ct10, ct11, ct12,
                                 ct13, ct14, ct15));
