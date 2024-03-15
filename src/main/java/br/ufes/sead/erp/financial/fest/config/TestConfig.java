@@ -18,6 +18,7 @@ import br.ufes.sead.erp.financial.fest.entities.Grantor;
 import br.ufes.sead.erp.financial.fest.entities.Project;
 import br.ufes.sead.erp.financial.fest.entities.Term;
 import br.ufes.sead.erp.financial.fest.entities.enums.BondType;
+import br.ufes.sead.erp.financial.fest.entities.enums.EducationLevel;
 import br.ufes.sead.erp.financial.fest.entities.enums.EventType;
 import br.ufes.sead.erp.financial.fest.entities.enums.TermType;
 import br.ufes.sead.erp.financial.fest.repositories.BondEventReminderRepository;
@@ -128,35 +129,35 @@ public class TestConfig implements CommandLineRunner {
                 projectRepository.saveAll(
                                 Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15));
 
-                Employee e1 = new Employee("John", "Doe", "12345756789", LocalDate.parse("1990-01-15"),
+                Employee e1 = new Employee("John", "Doe", "12345756789", LocalDate.parse("1990-01-15"), EducationLevel.GRADUATED,
                                 "Some address", "john.doe@example.net");
-                Employee e2 = new Employee("Jane", "Smith", "98765754321", LocalDate.parse("1988-05-20"),
+                Employee e2 = new Employee("Jane", "Smith", "98765754321", LocalDate.parse("1988-05-20"), EducationLevel.GRADUATED,
                                 "Some address", "jane.smith@example.net");
-                Employee e3 = new Employee("Jack", "Black", "12315723123", LocalDate.parse("1995-12-31"),
+                Employee e3 = new Employee("Jack", "Black", "12315723123", LocalDate.parse("1995-12-31"), EducationLevel.GRADUATED,
                                 "Some address", "jack.black@example.net");
-                Employee e4 = new Employee("Jill", "White", "32135721321", LocalDate.parse("1993-06-30"),
+                Employee e4 = new Employee("Jill", "White", "32135721321", LocalDate.parse("1993-06-30"), EducationLevel.GRADUATED,
                                 "Some address", "jill.white@example.net");
-                Employee e5 = new Employee("Jim", "Green", "45576456456", LocalDate.parse("1991-03-15"),
+                Employee e5 = new Employee("Jim", "Green", "45576456456", LocalDate.parse("1991-03-15"), EducationLevel.GRADUATED,
                                 "Some address", "jim.green@example.net");
-                Employee e6 = new Employee("Jenny", "Brown", "65465574654", LocalDate.parse("1994-09-15"),
+                Employee e6 = new Employee("Jenny", "Brown", "65465574654", LocalDate.parse("1994-09-15"), EducationLevel.GRADUATED,
                                 "Some address", "jenny.brown@example.net");
-                Employee e7 = new Employee("Joe", "Grey", "78978579789", LocalDate.parse("1992-07-31"),
+                Employee e7 = new Employee("Joe", "Grey", "78978579789", LocalDate.parse("1992-07-31"), EducationLevel.GRADUATED,
                                 "Some address", "joe.grey@example.net");
-                Employee e8 = new Employee("Jessica", "Blue", "98795787987", LocalDate.parse("1996-11-30"),
+                Employee e8 = new Employee("Jessica", "Blue", "98795787987", LocalDate.parse("1996-11-30"), EducationLevel.GRADUATED,
                                 "Some address", "jessica.blue@example.net");
-                Employee e9 = new Employee("James", "Red", "15915579159", LocalDate.parse("1997-02-28"),
+                Employee e9 = new Employee("James", "Red", "15915579159", LocalDate.parse("1997-02-28"), EducationLevel.GRADUATED,
                                 "Some address", "james.red@example.net");
-                Employee e10 = new Employee("Julia", "Purple", "95195751951", LocalDate.parse("1998-10-31"),
+                Employee e10 = new Employee("Julia", "Purple", "95195751951", LocalDate.parse("1998-10-31"), EducationLevel.GRADUATED,
                                 "Some address", "julia.purple@example.net");
-                Employee e11 = new Employee("Jason", "Yellow", "75375357753", LocalDate.parse("1999-04-30"),
+                Employee e11 = new Employee("Jason", "Yellow", "75375357753", LocalDate.parse("1999-04-30"), EducationLevel.GRADUATED,
                                 "Some address", "jason.yellow@example.net");
-                Employee e12 = new Employee("Jasmine", "Orange", "35735757357", LocalDate.parse("2000-08-31"),
+                Employee e12 = new Employee("Jasmine", "Orange", "35735757357", LocalDate.parse("2000-08-31"), EducationLevel.GRADUATED,
                                 "Some address", "jasmine.orange@example.net");
-                Employee e13 = new Employee("Justin", "Cyan", "25825578258", LocalDate.parse("2001-01-31"),
+                Employee e13 = new Employee("Justin", "Cyan", "25825578258", LocalDate.parse("2001-01-31"), EducationLevel.GRADUATED,
                                 "Some address", "justin.cyan@example.net");
-                Employee e14 = new Employee("Jade", "Magenta", "85285257852", LocalDate.parse("2002-05-31"),
+                Employee e14 = new Employee("Jade", "Magenta", "85285257852", LocalDate.parse("2002-05-31"), EducationLevel.GRADUATED,
                                 "Some address", "jade.magenta@example.net");
-                Employee e15 = new Employee("Jasper", "Violet", "45645576456", LocalDate.parse("2003-09-30"),
+                Employee e15 = new Employee("Jasper", "Violet", "45645576456", LocalDate.parse("2003-09-30"), EducationLevel.GRADUATED,
                                 "Some address", "jasper.violet@example.net");
 
                 employeeRepository.saveAll(

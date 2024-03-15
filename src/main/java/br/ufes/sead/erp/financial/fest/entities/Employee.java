@@ -6,8 +6,11 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import br.ufes.sead.erp.financial.fest.entities.enums.EducationLevel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
@@ -26,6 +29,10 @@ public class Employee {
     @Column(nullable = false)
     private String identityNumber;
     private LocalDate birthDate;
+
+    @Column(nullable = false, length = 20)
+    @Enumerated(EnumType.STRING)
+    private EducationLevel education;
     private String address;
     private String email;
 
@@ -36,12 +43,13 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String givenName, String surname, String identityNumber, LocalDate birthDate, String address,
+    public Employee(String givenName, String surname, String identityNumber, LocalDate birthDate, EducationLevel education, String address,
             String email) {
         this.givenName = givenName;
         this.surname = surname;
         this.identityNumber = identityNumber;
         this.birthDate = birthDate;
+        this.education = education;
         this.address = address;
         this.email = email;
     }
@@ -84,6 +92,14 @@ public class Employee {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public EducationLevel getEducation() {
+        return education;
+    }
+
+    public void setEducation(EducationLevel education) {
+        this.education = education;
     }
 
     public String getAddress() {
@@ -134,7 +150,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee [id=" + id + ", givenName=" + givenName + ", surname=" + surname + ", identityNumber="
-                + identityNumber + ", birthDate=" + birthDate + ", address=" + address + ", email=" + email + ", bonds=" + bonds + "]";
+                + identityNumber + ", birthDate=" + birthDate + ", education=" + education + ", address=" + address + ", email=" + email + ", bonds=" + bonds + "]";
     }
 
 }
