@@ -39,6 +39,10 @@ public class Bond {
     @JsonIgnoreProperties("bond")
     private List<BondEventReminder> eventReminders = new ArrayList<>();
 
+    @OneToMany(mappedBy = "bond", cascade = { jakarta.persistence.CascadeType.ALL }, orphanRemoval = true)
+    @JsonIgnoreProperties("bond")
+    private List<Term> terms = new ArrayList<>();
+
     @ManyToOne
     @PrimaryKeyJoinColumn
     @JsonIgnoreProperties("bonds")
@@ -157,6 +161,14 @@ public class Bond {
 
     public void addEventReminder(BondEventReminder eventReminder) {
         eventReminders.add(eventReminder);
+    }
+
+    public List<Term> getTerms() {
+        return terms;
+    }
+
+    public void addTerm(Term term) {
+        terms.add(term);
     }
 
     @Override

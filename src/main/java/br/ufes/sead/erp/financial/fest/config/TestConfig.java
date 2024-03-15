@@ -16,14 +16,17 @@ import br.ufes.sead.erp.financial.fest.entities.Course;
 import br.ufes.sead.erp.financial.fest.entities.Employee;
 import br.ufes.sead.erp.financial.fest.entities.Grantor;
 import br.ufes.sead.erp.financial.fest.entities.Project;
+import br.ufes.sead.erp.financial.fest.entities.Term;
 import br.ufes.sead.erp.financial.fest.entities.enums.BondType;
 import br.ufes.sead.erp.financial.fest.entities.enums.EventType;
+import br.ufes.sead.erp.financial.fest.entities.enums.TermType;
 import br.ufes.sead.erp.financial.fest.repositories.BondEventReminderRepository;
 import br.ufes.sead.erp.financial.fest.repositories.BondRepository;
 import br.ufes.sead.erp.financial.fest.repositories.CourseRepository;
 import br.ufes.sead.erp.financial.fest.repositories.EmployeeRepository;
 import br.ufes.sead.erp.financial.fest.repositories.GrantorRepository;
 import br.ufes.sead.erp.financial.fest.repositories.ProjectRepository;
+import br.ufes.sead.erp.financial.fest.repositories.TermRepository;
 
 @Configuration
 @Profile("test")
@@ -41,6 +44,8 @@ public class TestConfig implements CommandLineRunner {
         private BondRepository bondRepository;
         @Autowired
         private BondEventReminderRepository bondEventRepository;
+        @Autowired
+        private TermRepository termRepository;
 
         @Override
         public void run(String... args) throws Exception {
@@ -238,6 +243,12 @@ public class TestConfig implements CommandLineRunner {
 
                         bondEventRepository.save(bondEventReminder);
                 }
+
+                for (Bond bond : bondRepository.findAll()) {
+                        final Term term = new Term(TermType.EMPLOYMENT, "C:\\temp\\contract.pdf", bond);
+                        termRepository.save(term);
+                }
+
         }
 
 }
