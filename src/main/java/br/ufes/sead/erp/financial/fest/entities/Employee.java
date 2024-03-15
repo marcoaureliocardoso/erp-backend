@@ -26,6 +26,7 @@ public class Employee {
     @Column(nullable = false)
     private String identityNumber;
     private LocalDate birthDate;
+    private String address;
     private String email;
 
     @OneToMany(mappedBy = "employee")
@@ -35,12 +36,13 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(String givenName, String surname, String identityNumber, LocalDate birthDate,
+    public Employee(String givenName, String surname, String identityNumber, LocalDate birthDate, String address,
             String email) {
         this.givenName = givenName;
         this.surname = surname;
         this.identityNumber = identityNumber;
         this.birthDate = birthDate;
+        this.address = address;
         this.email = email;
     }
 
@@ -84,6 +86,14 @@ public class Employee {
         this.birthDate = birthDate;
     }
 
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getEmail() {
         return email;
     }
@@ -100,7 +110,7 @@ public class Employee {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + (int) (id ^ (id >>> 32));
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
 
@@ -113,7 +123,10 @@ public class Employee {
         if (getClass() != obj.getClass())
             return false;
         Employee other = (Employee) obj;
-        if (id != other.id)
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
             return false;
         return true;
     }
@@ -121,7 +134,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee [id=" + id + ", givenName=" + givenName + ", surname=" + surname + ", identityNumber="
-                + identityNumber + ", birthDate=" + birthDate + ", email=" + email + ", bonds=" + bonds + "]";
+                + identityNumber + ", birthDate=" + birthDate + ", address=" + address + ", email=" + email + ", bonds=" + bonds + "]";
     }
 
 }
