@@ -3,7 +3,6 @@ package br.ufes.sead.erp.financial.fest.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +19,7 @@ import jakarta.transaction.Transactional.TxType;
 @Service
 public class BondService {
 
-    @Autowired
-    private BondRepository bondRepository;
+    private final BondRepository bondRepository;
 
     // @Autowired
     // private EmailService emailService;
@@ -30,6 +28,10 @@ public class BondService {
 
     public List<Bond> findAll() {
         return bondRepository.findAll();
+    }
+
+    public BondService(BondRepository bondRepository) {
+        this.bondRepository = bondRepository;
     }
 
     public Bond findById(Long id) {

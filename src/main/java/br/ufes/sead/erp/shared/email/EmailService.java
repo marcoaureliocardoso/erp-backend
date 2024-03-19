@@ -1,6 +1,5 @@
 package br.ufes.sead.erp.shared.email;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -13,14 +12,17 @@ import jakarta.mail.internet.MimeMessage;
 @Service
 public class EmailService {
 
-    @Autowired
-    private JavaMailSender mailSender;
+    private final JavaMailSender mailSender;
 
-    @Autowired
-    private FileReadingService fileReadingService;
+    private final FileReadingService fileReadingService;
 
-    @Value("${spring.mail.username}")
-    private String sender;
+    private final String sender;
+
+    public EmailService(JavaMailSender mailSender, FileReadingService fileReadingService, @Value("${spring.mail.username}") String sender) {
+        this.mailSender = mailSender;
+        this.fileReadingService = fileReadingService;
+        this.sender = sender;
+    }
 
     public String sendEmail(Email email) {
         try {

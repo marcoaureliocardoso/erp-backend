@@ -1,6 +1,5 @@
 package br.ufes.sead.erp.shared;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.stereotype.Service;
@@ -8,8 +7,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class FileReadingService {
 
-    @Autowired
-    ResourceLoader resourceLoader;
+    private final ResourceLoader resourceLoader;
+
+    public FileReadingService(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
+    }
 
     public String readFileAsString(String filePath) {
         try {

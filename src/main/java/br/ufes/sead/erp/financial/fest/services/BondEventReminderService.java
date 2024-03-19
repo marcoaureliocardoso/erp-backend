@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +17,11 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class BondEventReminderService {
 
-    @Autowired
-    private BondEventReminderRepository bondEventRepository;
+    private final BondEventReminderRepository bondEventRepository;
+
+    public BondEventReminderService(BondEventReminderRepository bondEventRepository) {
+        this.bondEventRepository = bondEventRepository;
+    }
 
     public List<BondEventReminder> findAll() {
         return bondEventRepository.findAll();

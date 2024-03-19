@@ -3,7 +3,6 @@ package br.ufes.sead.erp.financial.fest.resources;
 import java.net.URI;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,8 +21,11 @@ import br.ufes.sead.erp.financial.fest.services.CourseService;
 @RequestMapping(value = "/api/v1/financial/fest/courses")
 public class CourseResource {
 
-    @Autowired
-    private CourseService service;
+    private final CourseService service;
+
+    public CourseResource(CourseService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public ResponseEntity<List<Course>> findAll() {

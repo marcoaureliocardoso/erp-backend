@@ -4,7 +4,6 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
@@ -33,20 +32,26 @@ import br.ufes.sead.erp.financial.fest.repositories.TermRepository;
 @Profile("test")
 public class TestConfig implements CommandLineRunner {
 
-        @Autowired
-        private GrantorRepository grantorRepository;
-        @Autowired
-        private CourseRepository courseRepository;
-        @Autowired
-        private ProjectRepository projectRepository;
-        @Autowired
-        private EmployeeRepository employeeRepository;
-        @Autowired
-        private BondRepository bondRepository;
-        @Autowired
-        private BondEventReminderRepository bondEventRepository;
-        @Autowired
-        private TermRepository termRepository;
+        private final GrantorRepository grantorRepository;
+        private final CourseRepository courseRepository;
+        private final ProjectRepository projectRepository;
+        private final EmployeeRepository employeeRepository;
+        private final BondRepository bondRepository;
+        private final BondEventReminderRepository bondEventRepository;
+        private final TermRepository termRepository;
+
+        public TestConfig(GrantorRepository grantorRepository, CourseRepository courseRepository,
+                        ProjectRepository projectRepository, EmployeeRepository employeeRepository,
+                        BondRepository bondRepository, BondEventReminderRepository bondEventRepository,
+                        TermRepository termRepository) {
+                this.grantorRepository = grantorRepository;
+                this.courseRepository = courseRepository;
+                this.projectRepository = projectRepository;
+                this.employeeRepository = employeeRepository;
+                this.bondRepository = bondRepository;
+                this.bondEventRepository = bondEventRepository;
+                this.termRepository = termRepository;
+        }
 
         @Override
         public void run(String... args) throws Exception {

@@ -3,7 +3,6 @@ package br.ufes.sead.erp.financial.fest.services;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
@@ -16,8 +15,11 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class GrantorService {
 
-    @Autowired
-    private GrantorRepository grantorRepository;
+    private final GrantorRepository grantorRepository;
+
+    public GrantorService(GrantorRepository grantorRepository) {
+        this.grantorRepository = grantorRepository;
+    }
 
     public List<Grantor> findAll() {
         return grantorRepository.findAll();

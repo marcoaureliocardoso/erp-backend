@@ -5,7 +5,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -18,17 +17,22 @@ import br.ufes.sead.erp.shared.email.EmailService;
 @Component
 public class ScheduledTasks {
 
-    @Autowired
-    private BondEventReminderService bondEventReminderService;
+    private final BondEventReminderService bondEventReminderService;
+    private final EmailService emailService;
 
-    @Autowired
-    private EmailService emailService;
+    private final String festRecipients;
 
-    @Value("${erp.mail.fest.recipients}")
-    String festRecipients;
+    private final DateTimeFormatter logFormat;
+    private final DateTimeFormatter simpleDate;
 
-    DateTimeFormatter logFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-    DateTimeFormatter simpleDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    public ScheduledTasks(BondEventReminderService bondEventReminderService, EmailService emailService,
+    @Value("${erp.mail.fest.recipients}") String festRecipients) {
+        this.bondEventReminderService = bondEventReminderService;
+        this.emailService = emailService;
+        this.festRecipients = festRecipients;
+        this.logFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        this.simpleDate = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    }
 
     // @Scheduled(cron = "* 7 3/12 * * *")
     @Scheduled(cron = "0/30 * * * * *")
