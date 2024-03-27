@@ -26,12 +26,12 @@ public class BondService {
 
     // private final String recipients = "alan@gmail.com, charlie@gmail.com";
 
-    public List<Bond> findAll() {
-        return bondRepository.findAll();
-    }
-
     public BondService(BondRepository bondRepository) {
         this.bondRepository = bondRepository;
+    }
+
+    public List<Bond> findAll() {
+        return bondRepository.findAll();
     }
 
     public Bond findById(Long id) {
