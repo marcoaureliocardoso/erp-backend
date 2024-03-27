@@ -30,7 +30,7 @@ public class Term {
 
     @ManyToOne
     @PrimaryKeyJoinColumn
-    @JsonIgnoreProperties("bonds")
+    @JsonIgnoreProperties("terms")
     private Bond bond;
 
     public Term() {
