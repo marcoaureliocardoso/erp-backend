@@ -25,6 +25,13 @@ spring:
           starttls:
             enable: true
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://kc.sead.ufes.br:8443/realms/sead-ufes
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
 erp:
   mail:
     fest:
