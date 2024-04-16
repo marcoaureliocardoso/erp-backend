@@ -52,7 +52,7 @@ public class ScheduledTasks {
                     + reminder.getBond().getEmployee().getGivenName() + " "
                     + reminder.getBond().getEmployee().getSurname(),
 
-                "Alerta para o evento do <a href=\"http://localhost:4200/financeiro/termos/" + reminder.getBond().getId() + "\" target=\"_blank\">vínculo</a>.\n\n"
+                "Alerta para o evento do <a href=\"http://localhost:4200/financeiro/fest/vinculos/" + reminder.getBond().getId() + "\" target=\"_blank\">vínculo</a>.\n\n"
                     + "Colaborador: " + reminder.getBond().getEmployee().getGivenName() + " " + reminder.getBond().getEmployee().getSurname() + "\n"
                     + "Evento: " + reminder.eventTypeLabel() + "\n"
                     + "Data do evento: " + reminder.getEventReminderDate().format(simpleDate) + "\n\n"
